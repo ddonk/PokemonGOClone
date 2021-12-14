@@ -3,6 +3,7 @@ package com.example.tdmd
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.FrameLayout
 import com.example.tdmd.Fragments.CollectionFragment
 import com.example.tdmd.Fragments.MapFragment
 import com.example.tdmd.Fragments.SettingsFragment
@@ -14,11 +15,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        //val recyclerAdapter = RecyclerAdapter(this, "Pikachu", "Electric type pokemon", 11, "HOI")
         fragmentInit()
     }
 
-        //val recyclerAdapter = RecyclerAdapter(this, "Pikachu", "Electric type pokemon", 11, "HOI")
 
     private fun fragmentInit() {
         val mapFragment = MapFragment();

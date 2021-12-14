@@ -18,6 +18,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     private String[] images;
     private Context context;
 
+
+    public RecyclerAdapter(String[] list, String[] details) {
+        this.names = list;
+        this.details = details;
+    }
+
     public RecyclerAdapter(Context context, String[] name, String[] detail, int[] lvl, String[] img) {
         this.context = context;
         this.names = name;
@@ -29,8 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.my_pokemon, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_pokemon , parent, false);
         return new MyViewHolder(view);
     }
 
@@ -43,7 +48,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return 0;
+        return names.length;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
