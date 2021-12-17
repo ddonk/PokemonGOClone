@@ -12,13 +12,15 @@ public class Pokemon {
     private PokemonStats pokemonStats;
     private List<Pokemon> evolutions;
     private List<Move> moves;
+    private String imageurl;
 
-    public Pokemon(String name, List<Type> types) {
+    public Pokemon(String name, List<Type> types, String imageurl) {
         this.name = name;
         this.types = types;
+        this.imageurl = imageurl;
     }
 
-    public Pokemon(String name, List<Type> types, int ID, double height, double weight, List<String> abilities, PokemonStats pokemonStats, List<Pokemon> evolutions, List<Move> moves) {
+    public Pokemon(String name, List<Type> types, int ID, double height, double weight, List<String> abilities, PokemonStats pokemonStats, List<Pokemon> evolutions, List<Move> moves, String imageurl) {
         this.name = name;
         this.types = types;
         this.ID = ID;
@@ -28,6 +30,7 @@ public class Pokemon {
         this.pokemonStats = pokemonStats;
         this.evolutions = evolutions;
         this.moves = moves;
+        this.imageurl = imageurl;
     }
 
     public String getName() {
@@ -64,5 +67,9 @@ public class Pokemon {
 
     public List<Move> getMoves() {
         return moves;
+    }
+
+    public String getImageurl() {
+        return imageurl;
     }
 }

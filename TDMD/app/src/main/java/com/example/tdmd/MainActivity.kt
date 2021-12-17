@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private var pokemonInfoStats = PokemonInfoStats();
     private var pokemonInfoMoves = PokemonInfoMoves();
     private var pokemonAdapter = PokemonUIAdapter(this)
-    private var pokemon = Pokemon("Treecko", listOf<Type>(Type.Grass), 277, 0.5, 5.0, listOf("Overgrow", "Unburden"), PokemonStats(40,45,35,65,55,70), listOf(Pokemon("Grovyle", listOf(Type.Grass)), Pokemon("Sceptile", listOf(Type.Grass))), listOf(Move("Pound", Type.Normal, 40), Move("Mega Drain", Type.Grass, 40)))
+    private var pokemon = Pokemon("Treecko", listOf<Type>(Type.Grass), 277, 0.5, 5.0, listOf("Overgrow", "Unburden"), PokemonStats(40,45,35,65,55,70), listOf(Pokemon("Grovyle", listOf(Type.Grass), "placeholder"), Pokemon("Sceptile", listOf(Type.Grass), "placeholder")), listOf(Move("Pound", Type.Normal, 40), Move("Mega Drain", Type.Grass, 40)), "placeholder")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,10 +46,11 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        hideSystemBars()
+
         mainInfoTabsFragmentsInit()
-        //fragmentInit()
-        //hideSystemBars()
-        //fragmentInit()
     }
 
 
@@ -125,42 +126,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-
-//    private fun fragmentInit() {
-//        val mapFragment = MapFragment();
-//        val colllectionFragment = CollectionFragment();
-//        val settingsFragment = SettingsFragment();
-//        val pokemonInfoFragment = PokemonInfoFragment();
-//
-//        supportFragmentManager.beginTransaction().apply {
-//            replace(R.id.flFragment, pokemonInfoFragment)
-//            addToBackStack(null)
-//            commit();
-//        }
-
-//        findViewById<Button>(R.id.buttonMap).setOnClickListener {
-//            supportFragmentManager.beginTransaction().apply {
-//                replace(R.id.flFragment, mapFragment)
-//                addToBackStack(null)
-//                commit();
-//            }
-//        }
-//
-//        findViewById<Button>(R.id.buttonCollection).setOnClickListener {
-//            supportFragmentManager.beginTransaction().apply {
-//                replace(R.id.flFragment, colllectionFragment)
-//                addToBackStack(null)
-//                commit();
-//            }
-//        }
-//
-//        findViewById<Button>(R.id.buttonSettings).setOnClickListener {
-//            supportFragmentManager.beginTransaction().apply {
-//                replace(R.id.flFragment, settingsFragment)
-//                addToBackStack(null)
-//                commit();
-//            }
-//        }
-//    }
 }
