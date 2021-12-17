@@ -6,45 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <FrameLayout
-        android:id="@+id/flFragment"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/MainViewPager"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/MainTabLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></androidx.viewpager.widget.ViewPager>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/MainTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonCollection" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <Button
-        android:id="@+id/buttonSettings"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonCollection"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Map" />
 
-    <Button
-        android:id="@+id/buttonCollection"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Collection"
-        app:layout_constraintEnd_toStartOf="@+id/buttonSettings"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonMap"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabCollection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Collection" />
 
-    <Button
-        android:id="@+id/buttonMap"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Map"
-        app:layout_constraintEnd_toStartOf="@+id/buttonCollection"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settings" />
+    </com.google.android.material.tabs.TabLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

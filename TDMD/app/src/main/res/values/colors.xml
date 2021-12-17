@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="PokemonFireType">#FC6C6D</color>
+    <color name="PokemonGrassType">#49D0B0</color>
+    <color name="PokemonElectricType">#FFEE6F</color>
+    <color name="PBRED">#FF0000</color>
+    <color name="PBYELLOW">#FFFF00</color>
+    <color name="PBGREEN">#00CA03</color>
 </resources>
