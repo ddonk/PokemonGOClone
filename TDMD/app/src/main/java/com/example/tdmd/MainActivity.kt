@@ -19,9 +19,16 @@ import com.example.tdmd.Fragments.PokemonInfoStats
 import com.google.android.material.tabs.TabItem
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener as OnTabSelectedListener
+import android.widget.Button
+import com.example.tdmd.Fragments.CollectionFragment
+import com.example.tdmd.Fragments.MapFragment
+import com.example.tdmd.Fragments.SettingsFragment
+import androidx.recyclerview.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity() {
+
+    var recyclerView: RecyclerView? = null
     private var pokemonInfoAbout = PokemonInfoAbout();
     private var pokemonInfoEvo = PokemonInfoEvo();
     private var pokemonInfoStats = PokemonInfoStats();
@@ -46,6 +53,12 @@ class MainActivity : AppCompatActivity() {
         //fragmentInit()
     }
 
+        //val recyclerAdapter = RecyclerAdapter(this, "Pikachu", "Electric type pokemon", 11, "HOI")
+
+    private fun fragmentInit() {
+        val mapFragment = MapFragment();
+        val colllectionFragment = CollectionFragment();
+        val settingsFragment = SettingsFragment();
     private fun hideSystemBars() {
         val windowInsetsController =
             ViewCompat.getWindowInsetsController(window.decorView) ?: return
