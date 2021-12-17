@@ -47,19 +47,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        //hideSystemBars()
+        hideSystemBars()
 
         mainInfoTabsFragmentsInit()
-        //fragmentInit()
     }
 
         //val recyclerAdapter = RecyclerAdapter(this, "Pikachu", "Electric type pokemon", 11, "HOI")
-
-    private fun fragmentInit() {
-        val mapFragment = MapFragment();
-        val colllectionFragment = CollectionFragment();
-        val settingsFragment = SettingsFragment();
-    }
 
     private fun hideSystemBars() {
         val windowInsetsController =
@@ -133,42 +126,4 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-
-//    private fun fragmentInit() {
-//        val mapFragment = MapFragment();
-//        val colllectionFragment = CollectionFragment();
-//        val settingsFragment = SettingsFragment();
-//        val pokemonInfoFragment = PokemonInfoFragment();
-//
-//        supportFragmentManager.beginTransaction().apply {
-//            replace(R.id.flFragment, pokemonInfoFragment)
-//            addToBackStack(null)
-//            commit();
-//        }
-
-//        findViewById<Button>(R.id.buttonMap).setOnClickListener {
-//            supportFragmentManager.beginTransaction().apply {
-//                replace(R.id.flFragment, mapFragment)
-//                addToBackStack(null)
-//                commit();
-//            }
-//        }
-//
-//        findViewById<Button>(R.id.buttonCollection).setOnClickListener {
-//            supportFragmentManager.beginTransaction().apply {
-//                replace(R.id.flFragment, colllectionFragment)
-//                addToBackStack(null)
-//                commit();
-//            }
-//        }
-//
-//        findViewById<Button>(R.id.buttonSettings).setOnClickListener {
-//            supportFragmentManager.beginTransaction().apply {
-//                replace(R.id.flFragment, settingsFragment)
-//                addToBackStack(null)
-//                commit();
-//            }
-//        }
-//    }
 }
