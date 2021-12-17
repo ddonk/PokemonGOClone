@@ -1,5 +1,12 @@
 package com.example.tdmd.Contracts;
 
+import android.content.Context;
+import android.graphics.Color;
+
+import androidx.core.content.ContextCompat;
+
+import com.example.tdmd.R;
+
 import java.util.List;
 
 public class Pokemon {

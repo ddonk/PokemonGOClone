@@ -7,10 +7,28 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="PokemonFireType">#FC6C6D</color>
-    <color name="PokemonGrassType">#49D0B0</color>
-    <color name="PokemonElectricType">#FFEE6F</color>
+
     <color name="PBRED">#FF0000</color>
     <color name="PBYELLOW">#FFFF00</color>
     <color name="PBGREEN">#00CA03</color>
+
+
+    <color name="PokemonNormalType">#A3A37B</color>
+    <color name="PokemonFightingType">#c03028</color>
+    <color name="PokemonFlyingType">#a890f0</color>
+    <color name="PokemonPoisonType">#a040a0</color>
+    <color name="PokemonGroundType">#C5AE72</color>
+    <color name="PokemonRockType">#b8a038</color>
+    <color name="PokemonBugType">#a8b820</color>
+    <color name="PokemonGhostType">#705898</color>
+    <color name="PokemonSteelType">#8A8A9C</color>
+    <color name="PokemonFireType">#f08030</color>
+    <color name="PokemonWaterType">#6890f0</color>
+    <color name="PokemonGrassType">#78c850</color>
+    <color name="PokemonElectricType">#FFFC55</color>
+    <color name="PokemonPsychicType">#f85888</color>
+    <color name="PokemonIceType">#98d8d8</color>
+    <color name="PokemonDragonType">#7038f8</color>
+    <color name="PokemonDarkType">#705848</color>
+    <color name="PokemonFairyType">#ee99ac</color>
 </resources>

@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListAdapter;
 
+import com.example.tdmd.Contracts.Pokemon;
+import com.example.tdmd.Contracts.Type;
 import com.example.tdmd.R;
-import com.example.tdmd.RecyclerAdapter;
+import com.example.tdmd.Adapters.RecyclerAdapter;
+
+import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,9 +29,7 @@ public class CollectionFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    String[] names = {"Chimchar","Pikachu","Squirtle"};
-    String[] details = {"Chimchar is een vuur pokemon","Pikachu is een elektrische pokemon","Squirtle is een water pokemon"};
-
+    Pokemon[] pokemons = {new Pokemon("Treecko", Collections.singletonList(Type.Grass), "placeholder"), new Pokemon("Pikachu", Collections.singletonList(Type.Electric), "placeholder"), new Pokemon("Squirtle", Collections.singletonList(Type.Water), "placeholder")};
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -72,7 +73,16 @@ public class CollectionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_collection, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.rvCollection);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recyclerView.setAdapter(new RecyclerAdapter(names, details));
+
+        String[] names = new String[pokemons.length];
+        Type[] types = new Type[pokemons.length];
+
+        for (int i = 0; i < pokemons.length; i++) {
+            names[i] = pokemons[i].getName();
+            types[i] = pokemons[i].getTypes().get(0);
+        }
+
+        recyclerView.setAdapter(new RecyclerAdapter(names, types));
 
         return view;
     }
