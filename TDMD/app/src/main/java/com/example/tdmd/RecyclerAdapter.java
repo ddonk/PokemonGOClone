@@ -35,7 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_pokemon , parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_card , parent, false);
         return new MyViewHolder(view);
     }
 
@@ -58,8 +58,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            myText1 = itemView.findViewById(R.id.pokemon_name);
-            myText2 = itemView.findViewById(R.id.pokemon_detail);
+            myText1 = itemView.findViewById(R.id.tvRC_NamePokemon);
+            myText2 = itemView.findViewById(R.id.tvRCTypePokemon);
             //img = itemView.findViewById(R.id.pokemon_image);
         }
     }
