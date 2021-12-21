@@ -3,7 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/recycler_card.xml" value="0.30085470085470084" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/drawable/roundstyle.xml" value="0.3141025641025641" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/drawable/roundstyle_types.xml" value="0.3141025641025641" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_blank.xml" value="0.30085470085470084" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_collection.xml" value="0.1683760683760684" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_map.xml" value="0.1683760683760684" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info.xml" value="0.25" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_about.xml" value="0.1683760683760684" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_evo.xml" value="0.18675213675213675" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_moves.xml" value="0.30085470085470084" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_stats.xml" value="0.30085470085470084" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_settings.xml" value="0.30085470085470084" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/recycler_card.xml" value="0.5" />
         <entry key="..\:/TDMD/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/TDMD/app/src/main/res/layout/fragment_blank.xml" value="0.2504528985507246" />
         <entry key="..\:/TDMD/app/src/main/res/layout/fragment_first.xml" value="0.1" />

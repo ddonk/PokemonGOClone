@@ -1,26 +1,42 @@
 package com.example.tdmd.Adapters;
 
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.tdmd.Contracts.Pokemon;
-import com.example.tdmd.Fragments.PokemonInfoAbout;
-import com.example.tdmd.Fragments.PokemonInfoEvo;
-import com.example.tdmd.Fragments.PokemonInfoMoves;
-import com.example.tdmd.Fragments.PokemonInfoStats;
+import com.example.tdmd.Contracts.PokemonStats;
+import com.example.tdmd.Contracts.Type;
+import com.example.tdmd.Fragments.FragmentInfoAbout;
+import com.example.tdmd.Fragments.FragmentInfoEvo;
+import com.example.tdmd.Fragments.FragmentInfoMoves;
+import com.example.tdmd.Fragments.FragmentInfoStats;
+
+import java.util.ArrayList;
 
 public class PokemonInfoPagerAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
-    private PokemonUIAdapter pokemonUIAdapter;
-    private Pokemon currentPokemon;
 
-    public PokemonInfoPagerAdapter(FragmentManager fm, int numOfTabs, PokemonUIAdapter pokemonUIAdapter) {
-        super(fm);
+    private Pokemon pokemon;
+
+    public PokemonInfoPagerAdapter(FragmentManager fragmentManager, int tabCount) {
+        super(fragmentManager);
+
+        ArrayList<Type> list = new ArrayList<Type>();
+        list.add(Type.grass);
+        ArrayList<String> list1 = new ArrayList<String>();
+        list1.add("Overgrow");
+        list1.add("Unburden");
+        ArrayList<String> list2 = new ArrayList<String>();
+        list2.add("Mega Drain");
+        list2.add("Pound");
+
+        pokemon = new Pokemon("Treecko", list, 277, 0.5, 5.0, list1, new PokemonStats(40,45,35,65,55,70), new ArrayList<>(), list2, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
+
         this.numOfTabs = numOfTabs;
-        this.pokemonUIAdapter = pokemonUIAdapter;
     }
 
     @NonNull
@@ -28,17 +44,19 @@ public class PokemonInfoPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                pokemonUIAdapter.LoadAboutPage(currentPokemon);
-                return new PokemonInfoAbout();
+
+                FragmentInfoAbout fragmentInfoAbout = FragmentInfoAbout.newInstance(pokemon);
+                return fragmentInfoAbout;
             case 1:
-                pokemonUIAdapter.LoadStats(currentPokemon);
-                return new PokemonInfoStats();
+
+                FragmentInfoStats fragmentInfoStats = FragmentInfoStats.newInstance(pokemon);
+                return fragmentInfoStats;
             case 2:
-                pokemonUIAdapter.LoadEvolutions(currentPokemon);
-                return new PokemonInfoEvo();
+                FragmentInfoEvo fragmentInfoEvo = FragmentInfoEvo.newInstance();
+                return fragmentInfoEvo;
             case 3:
-                pokemonUIAdapter.LoadMoves(currentPokemon);
-                return new PokemonInfoMoves();
+                FragmentInfoMoves fragmentInfoMoves = FragmentInfoMoves.newInstance();
+                return fragmentInfoMoves;
             default:
                 return null;
 
@@ -48,9 +66,5 @@ public class PokemonInfoPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return numOfTabs;
-    }
-
-    public void setCurrentPokemon(Pokemon currentPokemon) {
-        this.currentPokemon = currentPokemon;
     }
 }
