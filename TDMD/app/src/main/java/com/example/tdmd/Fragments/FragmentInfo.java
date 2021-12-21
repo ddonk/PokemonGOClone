@@ -14,29 +14,20 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.tdmd.Adapters.PokemonInfoPagerAdapter;
 import com.example.tdmd.Contracts.Pokemon;
+import com.example.tdmd.Contracts.TestObject;
 import com.example.tdmd.Contracts.Type;
 import com.example.tdmd.FragmentHandler;
+import com.example.tdmd.R;
 import com.example.tdmd.databinding.FragmentPokemonInfoBinding;
+import com.squareup.picasso.Picasso;
 
 public class FragmentInfo extends Fragment {
     private FragmentPokemonInfoBinding binding;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_Name = "param1";
-    private static final String ARG_Type1 = "param2";
-    private static final String ARG_Type2 = "param3";
-    private static final String ARG_ImgURL = "param4";
-    private static final Pokemon ARG_Pokemon = null;
+    private static final String ARG_Pokemon = "pokemon";
 
-
-
-    // TODO: Rename and change types of parameters
-    private String name;
-    private String type1;
-    private String type2;
-    private String imgUrl;
     private Pokemon pokemon;
 
     public FragmentInfo() {
@@ -46,16 +37,7 @@ public class FragmentInfo extends Fragment {
     public static FragmentInfo newInstance(Pokemon pokemon) {
         FragmentInfo fragment = new FragmentInfo();
         Bundle args = new Bundle();
-        args.putString(ARG_Name, pokemon.getName());
-        args.putString(ARG_Type1, "" + pokemon.getTypes().get(0));
-
-        if(pokemon.getTypes().size() > 1) {
-            args.putString(ARG_Type2, "" + pokemon.getTypes().get(1));
-        }
-
-        args.putString(ARG_ImgURL, "" + pokemon.getImageurl());
-        //args.putExtra(String.valueOf(ARG_Pokemon), pokemon);
-
+        args.putSerializable(ARG_Pokemon, pokemon);
         fragment.setArguments(args);
         return fragment;
     }
@@ -63,62 +45,38 @@ public class FragmentInfo extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
-            name = getArguments().getString(ARG_Name);
-            type1 = getArguments().getString(ARG_Type1);
-            type2 = getArguments().getString(ARG_Type2);
-            imgUrl = getArguments().getString(ARG_ImgURL);
-            //pokemon = (Pokemon) getArguments().getSerializable(String.valueOf(ARG_Pokemon));
+            pokemon = (Pokemon) getArguments().getSerializable(ARG_Pokemon);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.d("Fragments", "On Create View of Fragment Info");
         binding = FragmentPokemonInfoBinding.inflate(inflater, container, false);
-        //FragmentHandler.TabsFragmentsInit(binding.tlInfo, binding.vpInfo, getFragmentManager());
+        Log.d("TESTING", "CREATING TABS");
+        FragmentHandler.TabsFragmentsInit(new PokemonInfoPagerAdapter(getFragmentManager(), 3, pokemon),binding.tlInfo, binding.vpInfo, getFragmentManager());
+        FragmentHandler.ReplaceFragment(getFragmentManager(), new FragmentInfoAbout(), binding.vpInfo);
 
-        LoadPokemoninUI();
+        if(pokemon != null) {
+            LoadPokemoninUI();
+        }
+
         return binding.getRoot();
     }
 
     public void LoadPokemoninUI() {
-        binding.ivBackArrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO Make back button
-                //FragmentHandler.ReplaceFragment(getFragmentManager(), new );
-            }
-        });
+        binding.tvInfoNamePokemon.setText(pokemon.getName());
 
-        //Log.d("TESTING", "Received Pokemon: " + pokemon.toString());
-        TextView tvInfoName = binding.tvInfoNamePokemon;
+        binding.tvInfoTypePokemon.setText("" + pokemon.getTypes().get(0));
 
-        tvInfoName.setText(name);
+        if(pokemon.getTypes().size() > 1) {
+            binding.tvInfoTypePokemon1.setText("" + pokemon.getTypes().get(1));
+        } else {
+            binding.tvInfoTypePokemon1.setVisibility(View.GONE);
+        }
 
-        TextView tvType = binding.tvInfoTypePokemon;
-        tvType.setText(type1);
-
-        TextView tvType1 = binding.tvInfoTypePokemon1;
-
-//        if(pokemon.getTypes().size() > 1) {
-//
-//            tvType1.setText(pokemon.getTypes().get(1).name());
-//        } else {
-//            tvType1.setVisibility(View.INVISIBLE);
-//        }
-
-        ImageView ivBackground = binding.ivBackground;
-
-        //ivBackground.setColorFilter(typeColor(Type.valueOf(type1)), PorterDuff.Mode.MULTIPLY);
-
-        ImageView ivPokemon = binding.ivPokemon;
-
-        //Picasso.get().load(pokemon.getImageurl()).into(ivPokemon);
-//
-//        if(pokemon.getAbilities() != null) {
-//            TextView tvID = binding.tvIDPokemon;
-//            tvID.setText("#" + pokemon.getID());
-//        }
+        binding.ivBackground.setColorFilter(typeColor(pokemon.getTypes().get(0)));
+        Picasso.get().load(pokemon.getImageurl()).into(binding.ivPokemon);
     }
 }

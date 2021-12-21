@@ -122,7 +122,6 @@
         android:id="@+id/ivPokemon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/treecko"
         app:layout_constraintBottom_toBottomOf="@+id/ivBackground"
         app:layout_constraintEnd_toEndOf="@+id/tvIDPokemon"
         app:layout_constraintStart_toStartOf="@+id/tvInfoTypePokemon"

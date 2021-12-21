@@ -10,24 +10,24 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.tdmd.Contracts.Pokemon;
-import com.example.tdmd.R;
-import com.example.tdmd.databinding.FragmentMapBinding;
 import com.example.tdmd.databinding.FragmentPokemonInfoAboutBinding;
 
 public class FragmentInfoAbout extends Fragment {
     private FragmentPokemonInfoAboutBinding binding;
-    private static Pokemon POKEMON;
+
+    private static final String ARG_Pokemon = "pokemon";
+
+    private Pokemon mPokemon;
 
     public FragmentInfoAbout() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static FragmentInfoAbout newInstance(Pokemon pokemon) {
         FragmentInfoAbout fragment = new FragmentInfoAbout();
         Bundle args = new Bundle();
+        args.putSerializable(ARG_Pokemon, pokemon);
         fragment.setArguments(args);
-        args.putSerializable(String.valueOf(POKEMON), pokemon);
         return fragment;
     }
 
@@ -35,6 +35,7 @@ public class FragmentInfoAbout extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+            mPokemon = (Pokemon) getArguments().getSerializable(ARG_Pokemon);
         }
     }
 
@@ -43,22 +44,26 @@ public class FragmentInfoAbout extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentPokemonInfoAboutBinding.inflate(inflater, container, false);
-        initUI();
+
+        if(mPokemon != null) {
+            initUI();
+        }
+
         return binding.getRoot();
     }
 
     private void initUI() {
         TextView tvHeight = binding.tvTextHeight;
-        tvHeight.setText(POKEMON.getHeight() + " m");
+        tvHeight.setText(mPokemon.getHeight() + " m");
 
         TextView tvWeight = binding.tvTextWeight;
-        tvWeight.setText(POKEMON.getWeight() + " kg");
+        tvWeight.setText(mPokemon.getWeight() + " kg");
 
         TextView tvAbilities = binding.tvTextAbilities;
-        String result = POKEMON.getAbilities().get(0);
+        String result = mPokemon.getAbilities().get(0);
 
-        for (int i = 1; i < POKEMON.getAbilities().size(); i++) {
-            result += ", " + POKEMON.getAbilities().get(i);
+        for (int i = 1; i < mPokemon.getAbilities().size(); i++) {
+            result += ", " + mPokemon.getAbilities().get(i);
         }
 
         tvAbilities.setText(result);

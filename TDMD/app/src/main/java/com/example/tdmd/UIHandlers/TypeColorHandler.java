@@ -8,41 +8,41 @@ public class TypeColorHandler {
 
     public static int typeColor(Type type) {
         switch (type) {
-            case normal:
+            case Normal:
                 return Color.parseColor("#A3A37B");
-            case fighting:
+            case Fighting:
                 return Color.parseColor("#c03028");
-            case flying:
+            case Flying:
                 return Color.parseColor("#a890f0");
-            case poison:
+            case Poison:
                 return Color.parseColor("#a040a0");
-            case ground:
+            case Ground:
                 return Color.parseColor("#C5AE72");
-            case rock:
+            case Rock:
                 return Color.parseColor("#b8a038");
-            case bug:
+            case Bug:
                 return Color.parseColor("#a8b820");
-            case ghost:
+            case Ghost:
                 return Color.parseColor("#705898");
-            case steel:
+            case Steel:
                 return Color.parseColor("#8A8A9C");
-            case fire:
+            case Fire:
                 return Color.parseColor("#f08030");
-            case water:
+            case Water:
                 return Color.parseColor("#6890f0");
-            case grass:
+            case Grass:
                 return Color.parseColor("#78c850");
-            case electric:
+            case Electric:
                 return Color.parseColor("#FFFC55");
-            case psychic:
+            case Psychic:
                 return Color.parseColor("#f85888");
-            case ice:
+            case Ice:
                 return Color.parseColor("#98d8d8");
-            case dragon:
+            case Dragon:
                 return Color.parseColor("#7038f8");
-            case dark:
+            case Dark:
                 return Color.parseColor("#705848");
-            case fairy:
+            case Fairy:
                 return Color.parseColor("#ee99ac");
             default:
                 return Color.WHITE;

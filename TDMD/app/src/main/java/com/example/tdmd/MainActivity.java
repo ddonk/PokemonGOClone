@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tdmd.Adapters.MainPagerAdapter;
 import com.example.tdmd.Fragments.FragmentInfo;
 import com.example.tdmd.databinding.ActivityMainBinding;
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        FragmentHandler.TabsFragmentsInit(findViewById(R.id.MainTabLayout), findViewById(R.id.MainViewPager) ,getSupportFragmentManager());
+        FragmentHandler.TabsFragmentsInit(new MainPagerAdapter(getSupportFragmentManager(), 3),findViewById(R.id.MainTabLayout), findViewById(R.id.MainViewPager) ,getSupportFragmentManager());
 
         FragmentHandler.ReplaceFragment(getSupportFragmentManager(), new FragmentInfo(), R.id.MainViewPager);
     }

@@ -21,15 +21,18 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tdmd.Contracts.Pokemon;
+import com.example.tdmd.Contracts.TestObject;
 import com.example.tdmd.FragmentHandler;
 import com.example.tdmd.Fragments.FragmentInfo;
 import com.example.tdmd.Fragments.FragmentSettings;
 import com.example.tdmd.R;
 import com.google.android.material.imageview.ShapeableImageView;
+import com.squareup.picasso.Picasso;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
     private Pokemon[] pokemons;
+    private View view;
 
     public RecyclerAdapter(Pokemon[] pokemons) {
         this.pokemons = pokemons;
@@ -38,7 +41,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_card , parent, false);
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_card , parent, false);
         return new MyViewHolder(view);
     }
 
@@ -55,6 +58,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         }
 
         holder.cardImageView.setColorFilter(typeColor(pokemons[position].getTypes().get(0)), PorterDuff.Mode.MULTIPLY);
+        Picasso.get().setLoggingEnabled(true);
+        Picasso.get().load(pokemons[position].getImageurl()).into(holder.pokemonImage);
+
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

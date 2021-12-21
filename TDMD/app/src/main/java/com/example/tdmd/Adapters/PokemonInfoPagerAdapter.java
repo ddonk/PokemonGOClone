@@ -1,6 +1,8 @@
 package com.example.tdmd.Adapters;
 
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -19,43 +21,34 @@ import java.util.ArrayList;
 public class PokemonInfoPagerAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
-
     private Pokemon pokemon;
-
-    public PokemonInfoPagerAdapter(FragmentManager fragmentManager, int tabCount) {
+    public PokemonInfoPagerAdapter(FragmentManager fragmentManager, int tabCount, Pokemon pokemon) {
         super(fragmentManager);
-
-        ArrayList<Type> list = new ArrayList<Type>();
-        list.add(Type.grass);
-        ArrayList<String> list1 = new ArrayList<String>();
-        list1.add("Overgrow");
-        list1.add("Unburden");
-        ArrayList<String> list2 = new ArrayList<String>();
-        list2.add("Mega Drain");
-        list2.add("Pound");
-
-        pokemon = new Pokemon("Treecko", list, 277, 0.5, 5.0, list1, new PokemonStats(40,45,35,65,55,70), new ArrayList<>(), list2, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
-
+        Log.d("TESTING", "Getting items");
         this.numOfTabs = numOfTabs;
+        this.pokemon = pokemon;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        Log.d("TESTING", "Getting items");
         switch (position) {
             case 0:
-
+                Log.d("TESTING", "FRAGMENT INFO ABOUT CREATE");
                 FragmentInfoAbout fragmentInfoAbout = FragmentInfoAbout.newInstance(pokemon);
                 return fragmentInfoAbout;
             case 1:
-
+                Log.d("TESTING", "FRAGMENT INFO STATS CREATE");
                 FragmentInfoStats fragmentInfoStats = FragmentInfoStats.newInstance(pokemon);
                 return fragmentInfoStats;
             case 2:
-                FragmentInfoEvo fragmentInfoEvo = FragmentInfoEvo.newInstance();
+                Log.d("TESTING", "FRAGMENT INFO EVO CREATE");
+                FragmentInfoEvo fragmentInfoEvo = FragmentInfoEvo.newInstance(pokemon);
                 return fragmentInfoEvo;
             case 3:
-                FragmentInfoMoves fragmentInfoMoves = FragmentInfoMoves.newInstance();
+                Log.d("TESTING", "FRAGMENT INFO MOVES CREATE");
+                FragmentInfoMoves fragmentInfoMoves = FragmentInfoMoves.newInstance(pokemon);
                 return fragmentInfoMoves;
             default:
                 return null;

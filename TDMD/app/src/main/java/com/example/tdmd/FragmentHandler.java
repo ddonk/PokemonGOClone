@@ -17,9 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class FragmentHandler extends androidx.fragment.app.FragmentManager {
 
-    public static void TabsFragmentsInit(TabLayout tabLayout, ViewPager viewPager, FragmentManager fragmentManager) {
-        MainPagerAdapter pagerAdapter = new MainPagerAdapter(fragmentManager, tabLayout.getTabCount());
-
+    public static void TabsFragmentsInit(PagerAdapter pagerAdapter, TabLayout tabLayout, ViewPager viewPager, FragmentManager fragmentManager) {
         viewPager.setAdapter(pagerAdapter);
 
         tabLayout.addOnTabSelectedListener((TabLayout.OnTabSelectedListener)(new TabLayout.OnTabSelectedListener() {
@@ -41,6 +39,6 @@ public class FragmentHandler extends androidx.fragment.app.FragmentManager {
     }
 
     public static void ReplaceFragment(FragmentManager fragmentManager, Fragment fragment, int fragmentContainer) {
-        fragmentManager.beginTransaction().replace(fragmentContainer, fragment).commit();
+        fragmentManager.beginTransaction().replace(fragmentContainer, fragment).addToBackStack(null).commit();
     }
 }

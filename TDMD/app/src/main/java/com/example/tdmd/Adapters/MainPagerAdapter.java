@@ -1,8 +1,5 @@
 package com.example.tdmd.Adapters;
 
-import android.app.Activity;
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -28,7 +25,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         this.numOfTabs = numOfTabs;
 
         ArrayList<Type> list = new ArrayList<Type>();
-        list.add(Type.grass);
+        list.add(Type.Grass);
         ArrayList<String> list1 = new ArrayList<String>();
         list1.add("Overgrow");
         list1.add("Unburden");
