@@ -23,20 +23,22 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapController;
 import org.osmdroid.views.MapView;
+import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
+import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 public class MapAdapter {
     public void InitMap(MapView map, Activity activity) {
-
-        Log.d("Testing", "Is map null" + (map != null));
-        Log.d("Testing", "Is context null" + (activity != null));
         Configuration.getInstance().load(activity, PreferenceManager.getDefaultSharedPreferences(activity));
 
         map.setTileSource(TileSourceFactory.MAPNIK);
 
         IMapController mapController = map.getController();
         mapController.setZoom(20);
-
         SetMapLocation(activity, (MapController) mapController);
+
+        MyLocationNewOverlay locationOverlay = new MyLocationNewOverlay(map);
+        locationOverlay.enableMyLocation();
+        map.getOverlays().add(locationOverlay);
     }
 
     private void SetMapLocation(Activity activity, MapController mapController) {
