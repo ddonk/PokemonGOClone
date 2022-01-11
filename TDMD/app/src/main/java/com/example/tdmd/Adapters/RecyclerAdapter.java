@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tdmd.Contracts.Pokemon;
 import com.example.tdmd.Contracts.TestObject;
 import com.example.tdmd.FragmentHandler;
+import com.example.tdmd.Fragments.FragmentCollection;
 import com.example.tdmd.Fragments.FragmentInfo;
 import com.example.tdmd.Fragments.FragmentSettings;
 import com.example.tdmd.R;
