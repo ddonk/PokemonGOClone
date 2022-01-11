@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.tdmd.Adapters.MapAdapter;
 import com.example.tdmd.R;
 import com.example.tdmd.databinding.FragmentMapBinding;
 
@@ -28,6 +29,7 @@ public class FragmentMap extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+
         }
     }
 
@@ -36,6 +38,9 @@ public class FragmentMap extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentMapBinding.inflate(inflater, container, false);
+
+        MapAdapter mapAdapter = new MapAdapter();
+        mapAdapter.InitMap(binding.mapview, getActivity());
         return binding.getRoot();
     }
 }
