@@ -56,7 +56,9 @@ public class FragmentInfo extends Fragment {
         binding = FragmentPokemonInfoBinding.inflate(inflater, container, false);
         Log.d("TESTING", "CREATING TABS");
         FragmentHandler.TabsFragmentsInit(new PokemonInfoPagerAdapter(getFragmentManager(), 3, pokemon),binding.tlInfo, binding.vpInfo, getFragmentManager());
-        FragmentHandler.ReplaceFragment(getFragmentManager(), new FragmentInfoAbout(), binding.vpInfo);
+        FragmentHandler.ReplaceFragment(getFragmentManager(), new FragmentInfoAbout(), R.id.vpInfo);
+       //TODO Fix fragment replace bug
+        //TODO load pokemon info correctly
 
         if(pokemon != null) {
             LoadPokemoninUI();
