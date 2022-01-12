@@ -14,6 +14,8 @@ import com.example.tdmd.databinding.FragmentPokemonInfoAboutBinding;
 
 public class FragmentInfoAbout extends Fragment {
     private FragmentPokemonInfoAboutBinding binding;
+    private String weight;
+    private String height;
 
     private static final String ARG_Pokemon = "pokemon";
 
@@ -54,10 +56,12 @@ public class FragmentInfoAbout extends Fragment {
 
     private void initUI() {
         TextView tvHeight = binding.tvTextHeight;
-        tvHeight.setText(mPokemon.getHeight() + " m");
+        height = mPokemon.getHeight() + " m";
+        tvHeight.setText(height);
 
         TextView tvWeight = binding.tvTextWeight;
-        tvWeight.setText(mPokemon.getWeight() + " kg");
+        weight = mPokemon.getWeight() + " kg";
+        tvWeight.setText(weight);
 
         TextView tvAbilities = binding.tvTextAbilities;
         String result = mPokemon.getAbilities().get(0);

@@ -64,16 +64,16 @@ public class FragmentInfo extends Fragment {
         Log.d("TESTING", "CREATING TABS");
         FragmentHandler.TabsFragmentsInit(new PokemonInfoPagerAdapter(getFragmentManager(), 3, pokemon),binding.tlInfo, binding.vpInfo, getFragmentManager());
         FragmentHandler.ReplaceFragment(getFragmentManager(), new FragmentInfoAbout(), R.id.vpInfo);
-       //TODO Fix fragment replace bug
         //TODO load pokemon info correctly
 
         if(pokemon != null) {
             LoadPokemoninUI();
         }
 
+        //TODO check why this button needs to be pressed twice
         ImageView backButton = binding.ivBackArrow;
         backButton.setOnClickListener(v -> {
-            if(getFragmentManager().getBackStackEntryCount() > 0) {
+            if(getFragmentManager().getBackStackEntryCount() >= 0) {
                 getFragmentManager().popBackStackImmediate();
             }
             else {

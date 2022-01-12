@@ -3,6 +3,7 @@ package com.example.tdmd;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.tdmd.Adapters.MainPagerAdapter;
 import com.example.tdmd.Fragments.FragmentInfo;
