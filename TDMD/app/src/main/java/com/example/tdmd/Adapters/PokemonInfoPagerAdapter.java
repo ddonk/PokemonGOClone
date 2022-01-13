@@ -22,10 +22,11 @@ public class PokemonInfoPagerAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
     private Pokemon pokemon;
+
     public PokemonInfoPagerAdapter(FragmentManager fragmentManager, int tabCount, Pokemon pokemon) {
         super(fragmentManager);
         Log.d("TESTING", "Getting items");
-        this.numOfTabs = numOfTabs;
+        this.numOfTabs = tabCount;
         this.pokemon = pokemon;
     }
 
@@ -52,7 +53,6 @@ public class PokemonInfoPagerAdapter extends FragmentPagerAdapter {
                 return fragmentInfoMoves;
             default:
                 return null;
-
         }
     }
 
