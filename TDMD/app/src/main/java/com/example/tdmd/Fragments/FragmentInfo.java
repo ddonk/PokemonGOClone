@@ -3,21 +3,16 @@ package com.example.tdmd.Fragments;
 
 import static com.example.tdmd.UIHandlers.TypeColorHandler.typeColor;
 
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.tdmd.Adapters.PokemonInfoPagerAdapter;
 import com.example.tdmd.Contracts.Pokemon;
-import com.example.tdmd.Contracts.TestObject;
-import com.example.tdmd.Contracts.Type;
 import com.example.tdmd.FragmentHandler;
 import com.example.tdmd.R;
 import com.example.tdmd.databinding.FragmentPokemonInfoBinding;

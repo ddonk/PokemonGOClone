@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tdmd.Adapters.MainPagerAdapter;
-import com.example.tdmd.Adapters.MapAdapter;
 import com.example.tdmd.Fragments.FragmentInfo;
 import com.example.tdmd.databinding.ActivityMainBinding;
 

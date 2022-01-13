@@ -5,7 +5,6 @@ import static com.example.tdmd.UIHandlers.TypeColorHandler.typeColor;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.PorterDuff;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +13,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tdmd.Contracts.Pokemon;
-import com.example.tdmd.Contracts.TestObject;
 import com.example.tdmd.FragmentHandler;
 import com.example.tdmd.Fragments.FragmentInfo;
-import com.example.tdmd.Fragments.FragmentSettings;
 import com.example.tdmd.R;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;

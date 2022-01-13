@@ -1,28 +1,20 @@
 package com.example.tdmd.Fragments;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.tdmd.Adapters.MapAdapter;
+import com.example.tdmd.Map.MapAdapter;
 import com.example.tdmd.Contracts.Pokemon;
 import com.example.tdmd.Contracts.Type;
-import com.example.tdmd.R;
 import com.example.tdmd.databinding.FragmentMapBinding;
 
 import org.osmdroid.util.GeoPoint;
 
-import java.io.IOException;
-import java.net.URL;
 import java.util.Collections;
 
 public class FragmentMap extends Fragment {
@@ -52,11 +44,12 @@ public class FragmentMap extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentMapBinding.inflate(inflater, container, false);
 
-        MapAdapter mapAdapter = new MapAdapter( getActivity(), binding.mapview);
-        mapAdapter.InitMap();
-
-        Pokemon pokemon = new Pokemon("Treecko", Collections.singletonList(Type.Grass), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
-        mapAdapter.AddPokemonToMap(new GeoPoint(51.5924, 4.7813), pokemon);
+        MapAdapter mapAdapter = new MapAdapter(binding.mapview, getActivity());
+//        mapAdapter.InitMap();
+//
+//        Pokemon pokemon = new Pokemon("Treecko", Collections.singletonList(Type.Grass), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
+//        GeoPoint geoPoint = new GeoPoint(51.5924, 4.7813);
+//        mapAdapter.AddGeofence(geoPoint, pokemon, 200);
         return binding.getRoot();
     }
 }
