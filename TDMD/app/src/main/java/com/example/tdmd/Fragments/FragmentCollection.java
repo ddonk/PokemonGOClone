@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tdmd.Contracts.Pokemon;
+import com.example.tdmd.Contracts.PokemonStats;
 import com.example.tdmd.Contracts.Type;
 import com.example.tdmd.Adapters.RecyclerAdapter;
 import com.example.tdmd.databinding.FragmentCollectionBinding;
@@ -26,7 +27,8 @@ import java.util.Collections;
  */
 public class FragmentCollection extends Fragment {
 
-    Pokemon[] pokemons = {new Pokemon("Treecko", Collections.singletonList(Type.Grass), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png"),
+    PokemonStats pokemonStats = new PokemonStats(10,20,30,40,50,60);
+    Pokemon[] pokemons = {new Pokemon("Treecko", Collections.singletonList(Type.Grass),10,20.0,30.0, Collections.singletonList("Ember"), pokemonStats, Collections.singletonList("Grassthingy") ,"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png"),
             new Pokemon("Pikachu", Collections.singletonList(Type.Electric), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"),
             new Pokemon("Squirtle", Collections.singletonList(Type.Water), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png")};
     private FragmentCollectionBinding binding;
