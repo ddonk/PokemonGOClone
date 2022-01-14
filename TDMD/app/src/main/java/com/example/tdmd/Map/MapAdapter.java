@@ -70,9 +70,9 @@ public class MapAdapter {
     private GeofenceAdapter geofenceAdapter;
     private FragmentMapBinding binding;
 
-    public MapAdapter(MapView mapView, Activity activity, FragmentMapBinding binding) {
+    public MapAdapter(Activity activity, FragmentMapBinding binding) {
         this.binding = binding;
-        MapInit(mapView, activity);
+        MapInit(binding.mapview, activity);
 
         AskPermission.AskPermission(activity, new Callable() {
             @Override
