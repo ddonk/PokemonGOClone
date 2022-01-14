@@ -20,7 +20,6 @@ public class Pokemon implements Serializable {
     private double weight;
     private List<String> abilities;
     private PokemonStats pokemonStats;
-    private List<Pokemon> evolutions;
     private List<String> moves;
     private String imageurl;
 
@@ -30,7 +29,7 @@ public class Pokemon implements Serializable {
         this.imageurl = imageurl;
     }
 
-    public Pokemon(String name, List<Type> types, int ID, double height, double weight, List<String> abilities, PokemonStats pokemonStats, List<Pokemon> evolutions, List<String> moves, String imageurl) {
+    public Pokemon(String name, List<Type> types, int ID, double height, double weight, List<String> abilities, PokemonStats pokemonStats, List<String> moves, String imageurl) {
         this.name = name;
         this.types = types;
         this.ID = ID;
@@ -38,7 +37,6 @@ public class Pokemon implements Serializable {
         this.weight = weight;
         this.abilities = abilities;
         this.pokemonStats = pokemonStats;
-        this.evolutions = evolutions;
         this.moves = moves;
         this.imageurl = imageurl;
     }
@@ -53,7 +51,6 @@ public class Pokemon implements Serializable {
                 ", weight=" + weight +
                 ", abilities=" + abilities +
                 ", pokemonStats=" + pokemonStats +
-                ", evolutions=" + evolutions +
                 ", moves=" + moves +
                 ", imageurl='" + imageurl + '\'' +
                 '}';
@@ -85,10 +82,6 @@ public class Pokemon implements Serializable {
 
     public PokemonStats getPokemonStats() {
         return pokemonStats;
-    }
-
-    public List<Pokemon> getEvolutions() {
-        return evolutions;
     }
 
     public List<String> getMoves() {

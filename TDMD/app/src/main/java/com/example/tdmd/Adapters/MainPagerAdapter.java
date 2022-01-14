@@ -33,7 +33,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
         list2.add("Mega Drain");
         list2.add("Pound");
 
-        pokemon = new Pokemon("Treecko", list, 277, 0.5, 5.0, list1, new PokemonStats(40,45,35,65,55,70), new ArrayList<>(), list2, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
+        pokemon = new Pokemon("Treecko", list, 277, 0.5, 5.0, list1, new PokemonStats(40,45,35,65,55,70), list2, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
 
     }
 
