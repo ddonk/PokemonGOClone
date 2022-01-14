@@ -1,11 +1,16 @@
 package com.example.tdmd.Fragments;
 
+import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +26,7 @@ import com.example.tdmd.SharedPreferencesManager;
 import com.example.tdmd.databinding.FragmentCollectionBinding;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +35,7 @@ import java.util.Collections;
  */
 public class FragmentCollection extends Fragment {
     private FragmentCollectionBinding binding;
+    private List<Pokemon> pokemonList;
     public FragmentCollection() {
         // Required empty public constructor
     }
@@ -57,6 +64,8 @@ public class FragmentCollection extends Fragment {
         RecyclerView recyclerView = binding.rvCollection;
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) binding.swiperefresh;
+
         SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(binding.getRoot().getContext());
         recyclerView.setAdapter(new RecyclerAdapter(sharedPreferencesManager.GetPokemon()));
 
@@ -76,13 +85,26 @@ public class FragmentCollection extends Fragment {
             }
         });
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                RefreshPokemon();
+            }
+        });
+
         return binding.getRoot();
+    }
+
+    private void RefreshPokemon() {
+        SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(binding.getRoot().getContext());
+        binding.rvCollection.setAdapter(new RecyclerAdapter(sharedPreferencesManager.GetPokemon()));
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("Fragments", "Testing");
+        Log.d("Fragments", "Testing Resume");
         SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(binding.getRoot().getContext());
         binding.rvCollection.setAdapter(new RecyclerAdapter(sharedPreferencesManager.GetPokemon()));
     }
