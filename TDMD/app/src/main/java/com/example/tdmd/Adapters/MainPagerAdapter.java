@@ -18,8 +18,6 @@ import java.util.ArrayList;
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
     private int numOfTabs;
-    private FragmentManager fragmentManager;
-    private Pokemon pokemon;
 
     public MainPagerAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);

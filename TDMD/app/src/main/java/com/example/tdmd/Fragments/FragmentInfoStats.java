@@ -64,34 +64,34 @@ public class FragmentInfoStats extends Fragment {
         tvTextHP.setText("" + hp);
         progressBarHandler.SetProgressbarValue(hp, pbHP);
 
-//        TextView tvTextAttack = binding.tvTextAttack;
-//        ProgressBar pbAttack = binding.pbAttack;
-//        int attack = mPokemon.getPokemonStats().getAttack();
-//        tvTextAttack.setText("" + attack);
-//        progressBarHandler.SetProgressbarValue(attack, pbAttack);
-//
-//        TextView tvTextDefense = binding.tvTextDefense;
-//        ProgressBar pbDefense = binding.pbDefense;
-//        int defense = mPokemon.getPokemonStats().getDefense();
-//        tvTextDefense.setText("" + defense);
-//        progressBarHandler.SetProgressbarValue(defense, pbDefense);
-//
-//        TextView tvTextSpAttack = binding.tvTextSpAttack;
-//        ProgressBar pbSpAttack = binding.pbSpAttack;
-//        int spAttack = mPokemon.getPokemonStats().getSpAttack();
-//        tvTextSpAttack.setText("" + spAttack);
-//        progressBarHandler.SetProgressbarValue(spAttack, pbSpAttack);
-//
-//        TextView tvTextSpDef = binding.tvTextSpDef;
-//        ProgressBar pbSpDef = binding.pbSpDefense;
-//        int spDef = mPokemon.getPokemonStats().getSpDefense();
-//        tvTextSpDef.setText("" + spDef);
-//        progressBarHandler.SetProgressbarValue(spDef, pbSpDef);
-//
-//        TextView tvTextSpeed = binding.tvTextSpeed;
-//        ProgressBar pbSpeed = binding.pbSpeed;
-//        int speed = mPokemon.getPokemonStats().getSpeed();
-//        tvTextSpeed.setText("" + speed);
-//        progressBarHandler.SetProgressbarValue(speed, pbSpeed);
+        TextView tvTextAttack = binding.tvTextAttack;
+        ProgressBar pbAttack = binding.pbAttack;
+        int attack = mPokemon.getPokemonStats().getAttack();
+        tvTextAttack.setText("" + attack);
+        progressBarHandler.SetProgressbarValue(attack, pbAttack);
+
+        TextView tvTextDefense = binding.tvTextDefense;
+        ProgressBar pbDefense = binding.pbDefense;
+        int defense = mPokemon.getPokemonStats().getDefense();
+        tvTextDefense.setText("" + defense);
+        progressBarHandler.SetProgressbarValue(defense, pbDefense);
+
+        TextView tvTextSpAttack = binding.tvTextSpAttack;
+        ProgressBar pbSpAttack = binding.pbSpAttack;
+        int spAttack = mPokemon.getPokemonStats().getSpAttack();
+        tvTextSpAttack.setText("" + spAttack);
+        progressBarHandler.SetProgressbarValue(spAttack, pbSpAttack);
+
+        TextView tvTextSpDef = binding.tvTextSpDef;
+        ProgressBar pbSpDef = binding.pbSpDefense;
+        int spDef = mPokemon.getPokemonStats().getSpDefense();
+        tvTextSpDef.setText("" + spDef);
+        progressBarHandler.SetProgressbarValue(spDef, pbSpDef);
+
+        TextView tvTextSpeed = binding.tvTextSpeed;
+        ProgressBar pbSpeed = binding.pbSpeed;
+        int speed = mPokemon.getPokemonStats().getSpeed();
+        tvTextSpeed.setText("" + speed);
+        progressBarHandler.SetProgressbarValue(speed, pbSpeed);
     }
 }

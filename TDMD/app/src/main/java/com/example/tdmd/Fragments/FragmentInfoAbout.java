@@ -59,17 +59,17 @@ public class FragmentInfoAbout extends Fragment {
         height = mPokemon.getHeight() + " m";
         tvHeight.setText(height);
 
-//        TextView tvWeight = binding.tvTextWeight;
-//        weight = mPokemon.getWeight() + " kg";
-//        tvWeight.setText(weight);
-//
-//        TextView tvAbilities = binding.tvTextAbilities;
-//        String result = mPokemon.getAbilities().get(0);
-//
-//        for (int i = 1; i < mPokemon.getAbilities().size(); i++) {
-//            result += ", " + mPokemon.getAbilities().get(i);
-//        }
-//
-//        tvAbilities.setText(result);
+        TextView tvWeight = binding.tvTextWeight;
+        weight = mPokemon.getWeight() + " kg";
+        tvWeight.setText(weight);
+
+        TextView tvAbilities = binding.tvTextAbilities;
+        String result = mPokemon.getAbilities().get(0);
+
+        for (int i = 1; i < mPokemon.getAbilities().size(); i++) {
+            result += ", " + mPokemon.getAbilities().get(i);
+        }
+
+        tvAbilities.setText(result);
     }
 }

@@ -18,6 +18,8 @@ import com.example.tdmd.Contracts.Type;
 import com.example.tdmd.Adapters.RecyclerAdapter;
 import com.example.tdmd.databinding.FragmentCollectionBinding;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -28,7 +30,8 @@ import java.util.Collections;
 public class FragmentCollection extends Fragment {
 
     PokemonStats pokemonStats = new PokemonStats(10,20,30,40,50,60);
-    Pokemon[] pokemons = {new Pokemon("Treecko", Collections.singletonList(Type.Grass),10,20.0,30.0, Collections.singletonList("Ember"), pokemonStats, Collections.singletonList("Grassthingy") ,"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png"),
+    String[] strings = new String[]{"Test1", "Test2", "Test3", "Test4"};
+    Pokemon[] pokemons = {new Pokemon("Treecko", Collections.singletonList(Type.Grass),10,20.0,30.0, Collections.singletonList("Ember"), pokemonStats, Arrays.asList(strings),"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png"),
             new Pokemon("Pikachu", Collections.singletonList(Type.Electric), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"),
             new Pokemon("Squirtle", Collections.singletonList(Type.Water), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png")};
     private FragmentCollectionBinding binding;
