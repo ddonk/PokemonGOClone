@@ -1,23 +1,37 @@
 package com.example.tdmd;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.tdmd.Contracts.Pokemon;
+
+import java.util.ArrayList;
+import java.util.List;
+
 class SharedPreferencesManager {
-    private SharedPreferences.Editor editor;
-    private SharedPreferences settings;
+    private TinyDB tinyDB;
+    final String key = "PokemonList";
 
-    public SharedPreferencesManager(SharedPreferences settings) {
-        this.settings = settings;
-        editor = settings.edit();
+    public SharedPreferencesManager(Context context) {
+        this.tinyDB = new TinyDB(context);
     }
 
-    public void AddSetting(String key, String value) {
-        editor.putString(key, value);
-        editor.commit();
+    public void AddPokemon(List<Pokemon> pokemons) {
+        ArrayList<Object> pokeObjects = new ArrayList<>();
+
+        for (Pokemon p : pokemons) {
+            pokeObjects.add((Object) p);
+        }
+        tinyDB.putListObject(key,pokeObjects);
     }
 
-    public String GetSetting(String key){
-        return settings.getString(key, "").toString();
-    }
+    public ArrayList<Pokemon> GetPokemon(){
+        ArrayList<Object> objects = tinyDB.getListObject(key, Pokemon.class);
+        ArrayList<Pokemon> pokemons = new ArrayList<>();
 
+        for (Object o: objects) {
+            pokemons.add((Pokemon) o);
+        }
+        return pokemons;
+    }
 }
