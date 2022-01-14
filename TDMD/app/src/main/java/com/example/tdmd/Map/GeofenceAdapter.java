@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.tdmd.Contracts.Pokemon;
 import com.example.tdmd.Contracts.Type;
+import com.example.tdmd.SharedPreferencesManager;
 import com.example.tdmd.databinding.FragmentMapBinding;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
@@ -88,6 +89,13 @@ public class GeofenceAdapter extends ContextWrapper {
                 @Override
                 public void onClick(View view) {
                     Log.d("Geofencing", "Testing button");
+
+                    SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(fragmentMapBinding.getRoot().getContext());
+                    ArrayList<Pokemon> pokemons = sharedPreferencesManager.GetPokemon();
+                    pokemons.add(pokemon);
+                    sharedPreferencesManager.AddPokemon(pokemons);
+                    Log.d("Geofencing", sharedPreferencesManager.GetPokemon().toString());
+
                 }
             });
         }

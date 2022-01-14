@@ -8,7 +8,7 @@ import com.example.tdmd.Contracts.Pokemon;
 import java.util.ArrayList;
 import java.util.List;
 
-class SharedPreferencesManager {
+public class SharedPreferencesManager {
     private TinyDB tinyDB;
     final String key = "PokemonList";
 

@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.example.tdmd.Contracts.Pokemon;
 import com.example.tdmd.Contracts.PokemonStats;
 import com.example.tdmd.Contracts.Type;
 import com.example.tdmd.Adapters.RecyclerAdapter;
+import com.example.tdmd.SharedPreferencesManager;
 import com.example.tdmd.databinding.FragmentCollectionBinding;
 
 import java.util.Collections;
@@ -27,7 +29,6 @@ import java.util.Collections;
  */
 public class FragmentCollection extends Fragment {
     private FragmentCollectionBinding binding;
-
     public FragmentCollection() {
         // Required empty public constructor
     }
@@ -56,7 +57,8 @@ public class FragmentCollection extends Fragment {
         RecyclerView recyclerView = binding.rvCollection;
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        recyclerView.setAdapter(new RecyclerAdapter(pokemons));
+        SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(binding.getRoot().getContext());
+        recyclerView.setAdapter(new RecyclerAdapter(sharedPreferencesManager.GetPokemon()));
 
         recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
             @Override
@@ -75,5 +77,13 @@ public class FragmentCollection extends Fragment {
         });
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("Fragments", "Testing");
+        SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(binding.getRoot().getContext());
+        binding.rvCollection.setAdapter(new RecyclerAdapter(sharedPreferencesManager.GetPokemon()));
     }
 }

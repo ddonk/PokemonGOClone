@@ -1,5 +1,7 @@
 package com.example.tdmd.Adapters;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -23,18 +25,6 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public MainPagerAdapter(FragmentManager fm, int numOfTabs) {
         super(fm);
         this.numOfTabs = numOfTabs;
-
-//        ArrayList<Type> list = new ArrayList<Type>();
-//        list.add(Type.Grass);
-//        ArrayList<String> list1 = new ArrayList<String>();
-//        list1.add("Overgrow");
-//        list1.add("Unburden");
-//        ArrayList<String> list2 = new ArrayList<String>();
-//        list2.add("Mega Drain");
-//        list2.add("Pound");
-
-        //pokemon = new Pokemon("Treecko", list, 277, 0.5, 5.0, list1, new PokemonStats(40,45,35,65,55,70), list2, "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
-
     }
 
     @NonNull
@@ -44,6 +34,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return FragmentMap.newInstance();
             case 1:
+                Log.d("Fragments", "Testing");
                 return FragmentCollection.newInstance();
             case 2:
                 return FragmentSettings.newInstance();

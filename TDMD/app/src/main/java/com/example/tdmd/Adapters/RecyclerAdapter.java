@@ -25,12 +25,14 @@ import com.example.tdmd.R;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
-    private Pokemon[] pokemons;
+    private ArrayList<Pokemon> pokemons;
     private View view;
 
-    public RecyclerAdapter(Pokemon[] pokemons) {
+    public RecyclerAdapter(ArrayList<Pokemon> pokemons) {
         this.pokemons = pokemons;
     }
 
@@ -43,19 +45,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.nameText.setText(pokemons[position].getName());
+        holder.nameText.setText(pokemons.get(position).getName());
 
-        holder.typeText1.setText("" + pokemons[position].getTypes().get(0));
+        holder.typeText1.setText("" + pokemons.get(position).getTypes().get(0));
 
-        if(pokemons[position].getTypes().size() > 1) {
-            holder.typeText1.setText("" + pokemons[position].getTypes().get(1));
+        if(pokemons.get(position).getTypes().size() > 1) {
+            holder.typeText2.setText("" + pokemons.get(position).getTypes().get(1));
         } else {
-            //holder.typeText2.setVisibility(View.INVISIBLE);
+            holder.typeText2.setVisibility(View.INVISIBLE);
         }
 
-        holder.cardImageView.setColorFilter(typeColor(pokemons[position].getTypes().get(0)), PorterDuff.Mode.MULTIPLY);
+        holder.cardImageView.setColorFilter(typeColor(pokemons.get(position).getTypes().get(0)), PorterDuff.Mode.MULTIPLY);
         Picasso.get().setLoggingEnabled(true);
-        Picasso.get().load(pokemons[position].getImageurl()).into(holder.pokemonImage);
+        Picasso.get().load(pokemons.get(position).getImageurl()).into(holder.pokemonImage);
 
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +67,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
                 FragmentManager ft = ((FragmentActivity)activity).getSupportFragmentManager();
 
-                FragmentInfo fragmentInfo = FragmentInfo.newInstance(pokemons[position]);
+                FragmentInfo fragmentInfo = FragmentInfo.newInstance(pokemons.get(position));
 
                 FragmentHandler.ReplaceFragment(ft, fragmentInfo , R.id.fragment_container);
             }
@@ -74,7 +76,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return pokemons.length;
+        return pokemons.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -84,14 +86,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         TextView typeText2;
         ImageView pokemonImage;
         ShapeableImageView cardImageView;
-        Pokemon pokemon;
         CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             nameText = itemView.findViewById(R.id.tvRC_NamePokemon);
             typeText1 = itemView.findViewById(R.id.tvRCTypePokemon);
-            typeText1 = itemView.findViewById(R.id.tvRCTypePokemon1);
+            typeText2 = itemView.findViewById(R.id.tvRCTypePokemon1);
             cardImageView = itemView.findViewById(R.id.shapeableImageView);
             pokemonImage =  itemView.findViewById(R.id.ivRCPokemon);
             cardView = itemView.findViewById(R.id.cardView);
