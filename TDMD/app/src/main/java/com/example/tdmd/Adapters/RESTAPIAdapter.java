@@ -3,6 +3,8 @@ package com.example.tdmd.Adapters;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,6 +28,7 @@ public class RESTAPIAdapter {
     private Context context;
     private RequestQueue queue;
     private Pokemon pokemon;
+    private Integer rndInt;
 
     public RESTAPIAdapter(Context context) {
         this.context = context;
@@ -33,7 +36,10 @@ public class RESTAPIAdapter {
     }
 
     public void GetPokemon() {
-        String url = "https://pokeapi.co/api/v2/pokemon/charmander";
+        rndInt = (int) Math.floor(Math.random() * 898) + 1;
+        String url = "https://pokeapi.co/api/v2/pokemon/";
+        url = url + rndInt;
+
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -44,8 +50,11 @@ public class RESTAPIAdapter {
                             JSONObject species = response.getJSONObject("species");
                             String name = species.getString("name");
 
-                            JSONArray JSONtypes = response.getJSONArray("types");
-                            ArrayList<Type> types = convertJSONArrayToTypeArray(JSONtypes);
+                            JSONObject JSONtypes = response.getJSONObject("types");
+                            ArrayList<Type> types = convertJSONObjectToTypeArray(JSONtypes);
+
+                            //JSONArray JSONtypes = response.getJSONArray("types");
+                            //ArrayList<Type> types = convertJSONArrayToTypeArray(JSONtypes);
 
                             int id = response.getInt("id");
                             double height = response.getDouble("height");
@@ -83,7 +92,12 @@ public class RESTAPIAdapter {
                             JSONObject officialArtwork = JSONOtherSprites.getJSONObject("official-artwork");
                             String imageurl = officialArtwork.getString("front_default");
 
-                            pokemon = new Pokemon(name, types, id, height, weight, abilities, pokemonStats, evolutions, moves, imageurl);
+                            Log.d("test", name);
+                            Log.d("test", types.toString());
+                            Log.d("test", imageurl);
+
+                            pokemon = new Pokemon(name, types, imageurl);
+                            //pokemon = new Pokemon(name, types, id, height, weight, abilities, pokemonStats, evolutions, moves, imageurl);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -99,21 +113,49 @@ public class RESTAPIAdapter {
         queue.add(jsonObjectRequest);
     }
 
-    private ArrayList<Type> convertJSONArrayToTypeArray(JSONArray jsonArray) {
+    private ArrayList<Type> convertJSONObjectToTypeArray(JSONObject jsonObject) {
         ArrayList<Type> types = new ArrayList<>();
+        JSONArray tmpArray = new JSONArray();
+        String tmpString;
 
-        for (int i = 0; i < jsonArray.length(); i++) {
+        try {
+            tmpArray = jsonObject.getJSONArray("name");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        for (int i = 0; i < tmpArray.length(); i++) {
             try {
-                types.add(Type.valueOf(jsonArray.getString(i)));
+                tmpString = tmpArray.getString(i);
+                tmpString = tmpString.substring(0, 1).toUpperCase() + tmpString.substring(1);
+                types.add(Type.valueOf(tmpString));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
-
         return types;
     }
 
-    private ArrayList<String> convertJSONArrayToStringArray(JSONArray jsonArray) {
+//    private ArrayList<Type> convertJSONArrayToTypeArray(JSONArray jsonArray) {
+//        ArrayList<Type> types = new ArrayList<>();
+//        String tmpString;
+//
+//        for (int i = 0; i < jsonArray.length(); i++) {
+//            try {
+//                tmpString = jsonArray.getString(i);
+//
+//                tmpString = tmpString.substring(0, 1).toUpperCase() + tmpString.substring(1);
+//                types.add(Type.valueOf(tmpString));
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        return types;
+//    }
+
+    @NonNull
+    private ArrayList<String> convertJSONArrayToStringArray(@NonNull JSONArray jsonArray) {
         ArrayList<String> strings = new ArrayList<String>();
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
@@ -124,6 +166,10 @@ public class RESTAPIAdapter {
         }
 
         return strings;
+    }
+
+    public Pokemon takePokemon() {
+        return this.pokemon;
     }
 }
 
