@@ -1,6 +1,8 @@
 package com.example.tdmd.Contracts;
 
-public class PokemonStats {
+import java.io.Serializable;
+
+public class PokemonStats implements Serializable {
     private int hp;
     private int attack;
     private int defense;
@@ -15,6 +17,18 @@ public class PokemonStats {
         this.spAttack = spAttack;
         this.spDefense = spDefense;
         this.speed = speed;
+    }
+
+    @Override
+    public String toString() {
+        return "PokemonStats{" +
+                "hp=" + hp +
+                ", attack=" + attack +
+                ", defense=" + defense +
+                ", spAttack=" + spAttack +
+                ", spDefense=" + spDefense +
+                ", speed=" + speed +
+                '}';
     }
 
     public int getHp() {

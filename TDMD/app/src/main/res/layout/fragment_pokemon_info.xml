@@ -3,36 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/ivBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="400dp"
         android:background="@drawable/roundstyle"
         android:scaleType="fitXY"
         android:src="@drawable/splashartpokemon"
         android:tintMode="multiply"
-        app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#FFFFFF" />
+        app:tint="@color/PokemonDragonType" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/ivWhiteBackground"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="-40dp"
+        android:layout_marginTop="-50dp"
         android:background="@drawable/roundstyle"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/ivBackground" />
 
     <TextView
         android:id="@+id/tvInfoNamePokemon"
@@ -45,7 +44,7 @@
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/ivBackArrow" />
 
     <TextView
         android:id="@+id/tvInfoTypePokemon"
@@ -73,79 +72,72 @@
         android:id="@+id/tvInfoTypePokemon1"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/roundstyle_types"
         android:backgroundTint="#A1FFFFFF"
         android:textAlignment="center"
         android:textAppearance="@style/TypeText"
-        android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/tvInfoTypePokemon"
         app:layout_constraintTop_toTopOf="@+id/tvInfoTypePokemon" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+        android:id="@+id/tlInfo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/ivWhiteBackground"
         app:tabTextAppearance="@style/CustomTabText">
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/aboutTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="About" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/statsTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Base Stats" />
 
         <com.google.android.material.tabs.TabItem
-            android:id="@+id/evoTab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Evolutions" />
-
-        <com.google.android.material.tabs.TabItem
-            android:id="@+id/movesTab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Moves" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/PokemonViewPager"
+        android:id="@+id/vpInfo"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tabLayout"
+        app:layout_constraintEnd_toEndOf="@+id/tlInfo"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/tabLayout"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+        app:layout_constraintStart_toStartOf="@+id/tlInfo"
+        app:layout_constraintTop_toBottomOf="@+id/tlInfo">
 
     </androidx.viewpager.widget.ViewPager>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivPokemon"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBackground"
         app:layout_constraintEnd_toEndOf="@+id/tvIDPokemon"
         app:layout_constraintStart_toStartOf="@+id/tvInfoTypePokemon"
         app:layout_constraintTop_toBottomOf="@+id/tvInfoTypePokemon" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/ivBackArrow"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:clickable="true"
-        android:tint="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+        app:tint="#FFFFFF" />
 </androidx.constraintlayout.widget.ConstraintLayout>

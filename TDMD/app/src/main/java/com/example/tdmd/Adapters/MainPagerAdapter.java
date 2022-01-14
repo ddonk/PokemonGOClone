@@ -1,18 +1,21 @@
 package com.example.tdmd.Adapters;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.tdmd.Contracts.Pokemon;
-import com.example.tdmd.Fragments.CollectionFragment;
-import com.example.tdmd.Fragments.MapFragment;
-import com.example.tdmd.Fragments.PokemonInfoAbout;
-import com.example.tdmd.Fragments.PokemonInfoEvo;
-import com.example.tdmd.Fragments.PokemonInfoMoves;
-import com.example.tdmd.Fragments.PokemonInfoStats;
-import com.example.tdmd.Fragments.SettingsFragment;
+import com.example.tdmd.Contracts.PokemonStats;
+import com.example.tdmd.Contracts.Type;
+import com.example.tdmd.Fragments.FragmentCollection;
+import com.example.tdmd.Fragments.FragmentMap;
+import com.example.tdmd.Fragments.FragmentSettings;
+
+import java.util.ArrayList;
 
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
@@ -28,14 +31,13 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new MapFragment();
+                return FragmentMap.newInstance();
             case 1:
-                return new CollectionFragment();
+                return FragmentCollection.newInstance();
             case 2:
-                return new SettingsFragment();
+                return FragmentSettings.newInstance();
             default:
                 return null;
-
         }
     }
 

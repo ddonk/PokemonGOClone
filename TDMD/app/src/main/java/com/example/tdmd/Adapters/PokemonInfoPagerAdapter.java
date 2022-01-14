@@ -1,26 +1,25 @@
 package com.example.tdmd.Adapters;
 
+
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.tdmd.Contracts.Pokemon;
-import com.example.tdmd.Fragments.PokemonInfoAbout;
-import com.example.tdmd.Fragments.PokemonInfoEvo;
-import com.example.tdmd.Fragments.PokemonInfoMoves;
-import com.example.tdmd.Fragments.PokemonInfoStats;
+import com.example.tdmd.Fragments.FragmentInfoAbout;
+import com.example.tdmd.Fragments.FragmentInfoMoves;
+import com.example.tdmd.Fragments.FragmentInfoStats;
 
-public class PokemonInfoPagerAdapter extends FragmentPagerAdapter {
-
+public class PokemonInfoPagerAdapter extends FragmentPagerAdapter{
     private int numOfTabs;
-    private PokemonUIAdapter pokemonUIAdapter;
-    private Pokemon currentPokemon;
-
-    public PokemonInfoPagerAdapter(FragmentManager fm, int numOfTabs, PokemonUIAdapter pokemonUIAdapter) {
+    private Pokemon pokemon;
+    public PokemonInfoPagerAdapter(FragmentManager fm, int numOfTabs, Pokemon pokemon) {
         super(fm);
         this.numOfTabs = numOfTabs;
-        this.pokemonUIAdapter = pokemonUIAdapter;
+        this.pokemon = pokemon;
     }
 
     @NonNull
@@ -28,29 +27,18 @@ public class PokemonInfoPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                pokemonUIAdapter.LoadAboutPage(currentPokemon);
-                return new PokemonInfoAbout();
+                return FragmentInfoAbout.newInstance(pokemon);
             case 1:
-                pokemonUIAdapter.LoadStats(currentPokemon);
-                return new PokemonInfoStats();
+                return FragmentInfoStats.newInstance(pokemon);
             case 2:
-                pokemonUIAdapter.LoadEvolutions(currentPokemon);
-                return new PokemonInfoEvo();
-            case 3:
-                pokemonUIAdapter.LoadMoves(currentPokemon);
-                return new PokemonInfoMoves();
+                return FragmentInfoMoves.newInstance(pokemon);
             default:
                 return null;
-
         }
     }
 
     @Override
     public int getCount() {
         return numOfTabs;
-    }
-
-    public void setCurrentPokemon(Pokemon currentPokemon) {
-        this.currentPokemon = currentPokemon;
     }
 }

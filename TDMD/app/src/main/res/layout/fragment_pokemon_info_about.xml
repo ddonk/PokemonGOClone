@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.PokemonInfoAbout">
+    tools:context=".Fragments.FragmentInfoAbout">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -16,6 +16,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/readexprobold"
+        android:paddingHorizontal="10dp"
         android:text="Height"
         android:textColor="#8F9195"
         android:textSize="16sp"
@@ -30,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/readexprobold"
+        android:paddingHorizontal="10dp"
         android:text="Weight"
         android:textColor="#8F9195"
         android:textSize="16sp"
@@ -42,6 +44,7 @@
         android:id="@+id/tvTitleAbilities"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/readexprobold"
         android:text="Abilities"

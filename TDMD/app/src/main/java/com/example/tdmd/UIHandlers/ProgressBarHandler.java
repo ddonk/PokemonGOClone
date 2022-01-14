@@ -13,11 +13,11 @@ public class ProgressBarHandler {
     private final double REDCOLORMAXPERC = 0.33;
     private final double YELLOWCOLORMAXPERC = 0.67;
     private final double GREENCOLORMAXPERC = 1;
-    private Context context;
 
-    public ProgressBarHandler(Context context) {
-        this.context = context;
-    }
+    private final int PBRED = Color.parseColor("#C32121");
+    private final int PBYELLOW = Color.parseColor("#FFC107");
+    private final int PBGREEN = Color.parseColor("#12B815");
+
 
     public void SetProgressbarValue(int value, ProgressBar progressBar) {
         double barPercentage = percentageOfBar(value, progressBar);
@@ -29,21 +29,21 @@ public class ProgressBarHandler {
 
         if(barPercentage <= REDCOLORMAXPERC) {
             progressBar.setProgress(value);
-            progressBar.getProgressDrawable().setColorFilter(ContextCompat.getColor(context, R.color.PBRED), android.graphics.PorterDuff.Mode.SRC_IN);
+            progressBar.getProgressDrawable().setColorFilter(PBRED, android.graphics.PorterDuff.Mode.SRC_IN);
             //Log.d("BAR", "%: " + barPercentage + " Thus made progressbar red");
             return;
         }
 
         if(barPercentage > REDCOLORMAXPERC && barPercentage <= YELLOWCOLORMAXPERC) {
             progressBar.setProgress(value);
-            progressBar.getProgressDrawable().setColorFilter(ContextCompat.getColor(context, R.color.PBYELLOW), android.graphics.PorterDuff.Mode.SRC_IN);
+            progressBar.getProgressDrawable().setColorFilter(PBYELLOW, android.graphics.PorterDuff.Mode.SRC_IN);
             //Log.d("BAR", "%: " + barPercentage + " Thus made progressbar yellow");
             return;
         }
 
         if(barPercentage > YELLOWCOLORMAXPERC && barPercentage <= GREENCOLORMAXPERC) {
             progressBar.setProgress(value);
-            progressBar.getProgressDrawable().setColorFilter(ContextCompat.getColor(context, R.color.PBGREEN), android.graphics.PorterDuff.Mode.SRC_IN);
+            progressBar.getProgressDrawable().setColorFilter(PBGREEN, android.graphics.PorterDuff.Mode.SRC_IN);
             //Log.d("BAR", "%: " + barPercentage + " Thus made progressbar green");
             return;
         }
