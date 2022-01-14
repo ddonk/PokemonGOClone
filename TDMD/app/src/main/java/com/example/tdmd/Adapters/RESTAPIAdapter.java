@@ -3,6 +3,8 @@ package com.example.tdmd.Adapters;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,6 +28,7 @@ public class RESTAPIAdapter {
     private Context context;
     private RequestQueue queue;
     private Pokemon pokemon;
+    private Integer rndInt;
 
     public RESTAPIAdapter(Context context) {
         this.context = context;
@@ -33,7 +36,10 @@ public class RESTAPIAdapter {
     }
 
     public void GetPokemon() {
-        String url = "https://pokeapi.co/api/v2/pokemon/charmander";
+        rndInt = (int) Math.floor(Math.random() * 898) + 1;
+        String url = "https://pokeapi.co/api/v2/pokemon/";
+        url = url + rndInt;
+
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
