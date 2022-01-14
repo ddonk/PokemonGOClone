@@ -27,7 +27,6 @@ import java.util.Random;
 public class RESTAPIAdapter {
     private Context context;
     private RequestQueue queue;
-    private Pokemon pokemon;
     private Integer rndInt;
 
     public RESTAPIAdapter(Context context) {
@@ -50,6 +49,8 @@ public class RESTAPIAdapter {
                         try {
                             //Log.d("Volley", response.toString());
                             String name = response.getString("name");
+
+                            name = name.substring(0, 1).toUpperCase() + name.substring(1);
                             int id = response.getInt("id");
                             int height = response.getInt("height");
                             int weight = response.getInt("weight");
