@@ -15,6 +15,7 @@ import com.example.tdmd.Contracts.Move;
 import com.example.tdmd.Contracts.Pokemon;
 import com.example.tdmd.Contracts.PokemonStats;
 import com.example.tdmd.Contracts.Type;
+import com.example.tdmd.VolleyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,17 +26,10 @@ import java.util.List;
 import java.util.Random;
 
 public class RESTAPIAdapter {
-    private Context context;
-    private RequestQueue queue;
-    private Integer rndInt;
 
-    public RESTAPIAdapter(Context context) {
-        this.context = context;
-        queue = Volley.newRequestQueue(context);
-    }
-
-    public void GetPokemon() {
-        rndInt = (int) Math.floor(Math.random() * 898) + 1;
+    public static void GetPokemon(Context context, final VolleyCallback volleyCallback) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        int rndInt = (int) Math.floor(Math.random() * 898) + 1;
         String url = "https://pokeapi.co/api/v2/pokemon/";
         url = url + rndInt;
 
@@ -64,7 +58,7 @@ public class RESTAPIAdapter {
                             PokemonStats pokemonStats = getPokemonStats(response);
                             Pokemon pokemon = new Pokemon(name, types, id, height, weight, abilities, pokemonStats, moves, imageurl);
 
-                            Log.d("Volley", pokemon.toString());
+                            volleyCallback.OnSucces(pokemon);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -82,7 +76,7 @@ public class RESTAPIAdapter {
         queue.add(jsonObjectRequest);
     }
 
-    private PokemonStats getPokemonStats(JSONObject response) {
+    private static PokemonStats getPokemonStats(JSONObject response) {
         try {
             JSONArray stats = response.getJSONArray("stats");
 
@@ -110,7 +104,7 @@ public class RESTAPIAdapter {
         return null;
     }
 
-    private ArrayList<String> getMoves(JSONObject response) {
+    private static ArrayList<String> getMoves(JSONObject response) {
         ArrayList<String> result = new ArrayList<>();
 
         try {
@@ -129,7 +123,7 @@ public class RESTAPIAdapter {
         return result;
     }
 
-    private String getArt(JSONObject response) {
+    private static String getArt(JSONObject response) {
         try {
             JSONObject spritesArray = response.getJSONObject("sprites");
 
@@ -147,7 +141,7 @@ public class RESTAPIAdapter {
         return null;
     }
 
-    private ArrayList<Type> getTypes(JSONObject response) {
+    private static ArrayList<Type> getTypes(JSONObject response) {
         ArrayList<Type> result = new ArrayList<>();
         try {
             JSONArray types = response.getJSONArray("types");
@@ -165,7 +159,7 @@ public class RESTAPIAdapter {
         return result;
     }
 
-    private ArrayList<String> getAbilities(JSONObject response) {
+    private static ArrayList<String> getAbilities(JSONObject response) {
         ArrayList<String> result = new ArrayList<>();
         try {
             JSONArray jsonArray = response.getJSONArray("abilities");
@@ -183,5 +177,4 @@ public class RESTAPIAdapter {
         return result;
     }
 }
-
 

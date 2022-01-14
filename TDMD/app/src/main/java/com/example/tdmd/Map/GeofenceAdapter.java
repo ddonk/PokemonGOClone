@@ -31,6 +31,13 @@ public class GeofenceAdapter extends ContextWrapper {
                 .build();
     }
 
+    public GeofencingRequest getGeofencingRequest(List<Geofence> geofences) {
+        return new GeofencingRequest.Builder()
+                .addGeofences(geofences)
+                .setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER)
+                .build();
+    }
+
     public Geofence getGeofence(String id, GeoPoint geoPoint, float radius, int transitionTypes) {
         return new Geofence.Builder()
                 .setRequestId(id)

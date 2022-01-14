@@ -48,7 +48,7 @@ public class FragmentMap extends Fragment {
         binding = FragmentMapBinding.inflate(inflater, container, false);
         this.button = binding.mvButton;
         button.setVisibility(View.VISIBLE);
-        MapAdapter mapAdapter = new MapAdapter(binding.mapview, getActivity());
+        MapAdapter mapAdapter = new MapAdapter(binding.mapview, getActivity(), binding);
 //
 //        Pokemon pokemon = new Pokemon("Treecko", Collections.singletonList(Type.Grass), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
 //        GeoPoint geoPoint = new GeoPoint(51.5924, 4.7813);

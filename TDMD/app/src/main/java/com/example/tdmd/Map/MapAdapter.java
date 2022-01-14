@@ -15,16 +15,24 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
+import com.example.tdmd.Adapters.RESTAPIAdapter;
 import com.example.tdmd.AskPermission;
 import com.example.tdmd.Contracts.Pokemon;
 import com.example.tdmd.Contracts.Type;
+import com.example.tdmd.Fragments.FragmentMap;
+import com.example.tdmd.R;
+import com.example.tdmd.VolleyCallback;
+import com.example.tdmd.databinding.FragmentMapBinding;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingClient;
 import com.google.android.gms.location.GeofencingRequest;
@@ -60,8 +68,10 @@ public class MapAdapter {
     private GeoPoint yourLocation;
     private GeofencingClient geofencingClient;
     private GeofenceAdapter geofenceAdapter;
+    private FragmentMapBinding binding;
 
-    public MapAdapter(MapView mapView, Activity activity) {
+    public MapAdapter(MapView mapView, Activity activity, FragmentMapBinding binding) {
+        this.binding = binding;
         MapInit(mapView, activity);
 
         AskPermission.AskPermission(activity, new Callable() {
@@ -100,9 +110,20 @@ public class MapAdapter {
         this.geofencingClient = LocationServices.getGeofencingClient(this.activity);
         this.geofenceAdapter = new GeofenceAdapter(this.activity);
 
-        Pokemon pokemon = new Pokemon("Treecko", Collections.singletonList(Type.Grass), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
+        binding.mvButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Geofencing", "Adding pokemon via click");
 
-        AddGeofence(new GeoPoint(51.5924, 4.7813), pokemon, 100);
+                RESTAPIAdapter.GetPokemon(activity, new VolleyCallback() {
+                    @Override
+                    public void OnSucces(Pokemon result) {
+                        GeoPoint geoPoint = GetRandomLocation(yourLocation, 30);
+                        AddGeofence(geoPoint, result, 30);
+                    }
+                });
+            }
+        });
     }
 
     private void displayMyCurrentLocationOverlay() {
@@ -139,7 +160,7 @@ public class MapAdapter {
     }
 
     @SuppressLint("MissingPermission")
-    public void AddGeofence(GeoPoint geoPoint, Pokemon pokemon, float radius) {
+    public Geofence AddGeofence(GeoPoint geoPoint, Pokemon pokemon, float radius) {
         Geofence geofence = geofenceAdapter.getGeofence(pokemon.getName(), geoPoint, radius, Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_DWELL | Geofence.GEOFENCE_TRANSITION_EXIT);
         GeofencingRequest geofencingRequest = geofenceAdapter.getGeofencingRequest(geofence);
         PendingIntent pendingIntent = geofenceAdapter.getPendingIntent();
@@ -160,13 +181,30 @@ public class MapAdapter {
 
                     }
                 });
+
+        return geofence;
     }
+
     public void DrawCircle(GeoPoint center, double radiusInMeters) {
         List<GeoPoint> circlePoints = Polygon.pointsAsCircle(center, radiusInMeters);
         Polygon circle = new Polygon(mapView);
         circle.setPoints(circlePoints);
         mapView.getOverlayManager().add(circle);
         mapView.invalidate();
+    }
+
+    private GeoPoint GetRandomLocation(GeoPoint currentLocation, int bounds) {
+        float randomX = getRandomNumber(-bounds, bounds);
+        float randomY = getRandomNumber(-bounds, bounds);
+
+        randomX /= 10000;
+        randomY /= 10000;
+
+        return new GeoPoint(currentLocation.getLatitude() + randomX, currentLocation.getLongitude() + randomY);
+    }
+
+    private float getRandomNumber(int min, int max) {
+        return (float) ((Math.random() * (max - min)) + min);
     }
 }
 

@@ -26,8 +26,5 @@ public class MainActivity extends AppCompatActivity {
         FragmentHandler.TabsFragmentsInit(new MainPagerAdapter(getSupportFragmentManager(), 3),findViewById(R.id.MainTabLayout), findViewById(R.id.MainViewPager) ,getSupportFragmentManager());
 
         FragmentHandler.ReplaceFragment(getSupportFragmentManager(), new FragmentInfo(), R.id.MainViewPager);
-
-        RESTAPIAdapter restapiAdapter = new RESTAPIAdapter(this);
-        restapiAdapter.GetPokemon();
     }
 }
