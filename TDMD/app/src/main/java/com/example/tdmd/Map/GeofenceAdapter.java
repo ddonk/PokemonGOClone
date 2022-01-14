@@ -58,7 +58,7 @@ public class GeofenceAdapter extends ContextWrapper {
                 .setRequestId(id)
                 .setCircularRegion(geoPoint.getLatitude(), geoPoint.getLongitude(), radius)
                 .setTransitionTypes(transitionTypes)
-                .setLoiteringDelay(5000)
+                .setLoiteringDelay(500)
                 .setExpirationDuration(Geofence.NEVER_EXPIRE)
                 .build();
     }
