@@ -71,8 +71,8 @@ public class FragmentInfo extends Fragment {
         //TODO check why this button needs to be pressed twice
         ImageView backButton = binding.ivBackArrow;
         backButton.setOnClickListener(v -> {
-            if(getFragmentManager().getBackStackEntryCount() > 0) {
-                getFragmentManager().popBackStackImmediate();
+            if(getParentFragmentManager().getBackStackEntryCount() > 0) {
+                getParentFragmentManager().popBackStackImmediate();
             }
             else {
                 Toast.makeText(getContext(),"There is no previous fragment",Toast.LENGTH_SHORT).show();

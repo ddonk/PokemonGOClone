@@ -64,12 +64,15 @@ public class FragmentInfoAbout extends Fragment {
         tvWeight.setText(weight);
 
         TextView tvAbilities = binding.tvTextAbilities;
-        String result = mPokemon.getAbilities().get(0);
 
-        for (int i = 1; i < mPokemon.getAbilities().size(); i++) {
-            result += ", " + mPokemon.getAbilities().get(i);
+        if(mPokemon.getAbilities().size() > 0) {
+            String result = mPokemon.getAbilities().get(0);
+
+            for (int i = 1; i < mPokemon.getAbilities().size(); i++) {
+                result += ", " + mPokemon.getAbilities().get(i);
+            }
+
+            tvAbilities.setText(result);
         }
-
-        tvAbilities.setText(result);
     }
 }

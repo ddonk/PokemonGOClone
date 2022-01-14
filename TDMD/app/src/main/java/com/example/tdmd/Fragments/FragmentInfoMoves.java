@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.tdmd.Contracts.Pokemon;
 import com.example.tdmd.databinding.FragmentPokemonInfoMovesBinding;
@@ -45,8 +46,16 @@ public class FragmentInfoMoves extends Fragment {
         binding = FragmentPokemonInfoMovesBinding.inflate(inflater, container, false);
 
         if(mPokemon != null) {
-            //TODO Load Moves
-            //initUI();
+            TextView tvMoves = binding.tvMove;
+            TextView tvMoves1 = binding.tvMove1;
+            TextView tvMoves2 = binding.tvMove2;
+            TextView tvMoves3 = binding.tvMove3;
+
+            tvMoves.setText("Move #1: " + mPokemon.getMoves().get(0));
+            tvMoves1.setText("Move #2: " + mPokemon.getMoves().get(1));
+            tvMoves2.setText("Move #3: " + mPokemon.getMoves().get(2));
+            tvMoves3.setText("Move #4: " + mPokemon.getMoves().get(3));
+
         }
 
         return binding.getRoot();
