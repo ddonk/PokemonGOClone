@@ -69,7 +69,7 @@ public class PokemonTest {
 
         double getHeight = pokemon.getHeight();
 
-        assertEquals(testHeight,getHeight);
+        assertEquals(testHeight,getHeight,0);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class PokemonTest {
 
         double getWeight = pokemon.getWeight();
 
-        assertEquals(testWeight,getWeight);
+        assertEquals(testWeight,getWeight,0);
     }
 
     @Test
