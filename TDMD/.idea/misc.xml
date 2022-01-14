@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_blank.xml" value="0.3625" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_collection.xml" value="0.171875" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_map.xml" value="0.20520833333333333" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info.xml" value="0.20260416666666667" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_about.xml" value="0.20260416666666667" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_moves.xml" value="0.22" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_stats.xml" value="0.5" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/layout/recycler_card.xml" value="0.20364583333333333" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21927083333333333" />
+        <entry key="..\:/Android Projects/PokemonGOClone/TDMD/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.21927083333333333" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/drawable/roundstyle.xml" value="0.3141025641025641" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/drawable/roundstyle_types.xml" value="0.3141025641025641" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_blank.xml" value="0.30085470085470084" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_collection.xml" value="0.1683760683760684" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_map.xml" value="0.1683760683760684" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info.xml" value="0.25" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_about.xml" value="0.1683760683760684" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_evo.xml" value="0.18675213675213675" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_moves.xml" value="0.30085470085470084" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_stats.xml" value="0.30085470085470084" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_settings.xml" value="0.30085470085470084" />
+        <entry key="..\:/PokemonGOClone/TDMD/app/src/main/res/layout/recycler_card.xml" value="0.5" />
+        <entry key="..\:/TDMD/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/TDMD/app/src/main/res/layout/fragment_blank.xml" value="0.2504528985507246" />
+        <entry key="..\:/TDMD/app/src/main/res/layout/fragment_first.xml" value="0.1" />
+        <entry key="..\:/TDMD/app/src/main/res/layout/fragment_second.xml" value="0.2504528985507246" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/activity_main.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_collection.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_first.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_info_pokemon.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_map.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_about.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_evo.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_moves.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_pokemon_info_stats.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_second.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/fragment_settings.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/my_pokemon.xml" value="0.28940217391304346" />
+        <entry key="..\:/Users/Geert/Documents/PokemonGOClone/TDMD/app/src/main/res/layout/recycler_card.xml" value="0.34148550724637683" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

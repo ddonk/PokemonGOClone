@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">15dp</item>
+        <item name="fontFamily">@font/readexprobold</item>
+    </style>
+
+    <style name="roundImageview" parent="">
+        <item name="cornerSize">50dp</item>
+    </style>
+
+    <style name="TypeText"  parent="">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:background">@drawable/roundstyle_types</item>
+        <item name="android:backgroundTint">#A1FFFFFF</item>
+        <item name="android:fontFamily">@font/readexprobold</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#B5FFFFFF</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+</resources>

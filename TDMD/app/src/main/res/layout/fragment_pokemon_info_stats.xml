@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragments.FragmentInfoStats">
+
+<TextView
+    android:id="@+id/tvTitleSpDef"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:fontFamily="@font/readexprobold"
+    android:text="Sp. Def"
+    android:textColor="#8F9195"
+    android:textSize="16sp"
+    app:layout_constraintStart_toStartOf="@+id/tvTitleSpAttack"
+    app:layout_constraintTop_toBottomOf="@+id/tvTitleSpAttack" />
+
+<TextView
+    android:id="@+id/tvTitleSpAttack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:fontFamily="@font/readexprobold"
+    android:text="Sp. Attack"
+    android:textColor="#8F9195"
+    android:textSize="16sp"
+    app:layout_constraintStart_toStartOf="@+id/tvTitleDefense"
+    app:layout_constraintTop_toBottomOf="@+id/tvTitleDefense" />
+
+<TextView
+    android:id="@+id/tvTitleSpeed"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:fontFamily="@font/readexprobold"
+    android:text="Speed"
+    android:textColor="#8F9195"
+    android:textSize="16sp"
+    app:layout_constraintStart_toStartOf="@+id/tvTitleSpDef"
+    app:layout_constraintTop_toBottomOf="@+id/tvTitleSpDef" />
+
+    <TextView
+        android:id="@+id/tvTitleHP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/readexprobold"
+        android:text="HP"
+        android:textColor="#8F9195"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<TextView
+    android:id="@+id/tvTitleDefense"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:fontFamily="@font/readexprobold"
+    android:text="Defense"
+    android:textColor="#8F9195"
+    android:textSize="16sp"
+    app:layout_constraintStart_toStartOf="@+id/tvTitleAttack"
+    app:layout_constraintTop_toBottomOf="@+id/tvTitleAttack" />
+
+<TextView
+    android:id="@+id/tvTitleAttack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:fontFamily="@font/readexprobold"
+    android:text="Attack"
+    android:textColor="#8F9195"
+    android:textSize="16sp"
+    app:layout_constraintStart_toStartOf="@+id/tvTitleHP"
+    app:layout_constraintTop_toBottomOf="@+id/tvTitleHP" />
+
+    <TextView
+        android:id="@+id/tvTextSpAttack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/readexprobold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/tvTitleSpAttack"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleSpAttack" />
+
+    <TextView
+        android:id="@+id/tvTextSpDef"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/readexprobold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTextSpAttack"
+        app:layout_constraintTop_toBottomOf="@+id/tvTextSpAttack" />
+
+    <TextView
+        android:id="@+id/tvTextSpeed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/readexprobold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTextSpDef"
+        app:layout_constraintTop_toBottomOf="@+id/tvTextSpDef" />
+
+    <TextView
+        android:id="@+id/tvTextDefense"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/readexprobold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTextSpAttack"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleDefense" />
+
+    <TextView
+        android:id="@+id/tvTextAttack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/readexprobold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTextDefense"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleAttack" />
+
+    <TextView
+        android:id="@+id/tvTextHP"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/readexprobold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTextAttack"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleHP" />
+
+    <ProgressBar
+        android:id="@+id/pbAttack"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="150"
+        android:min="0"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTextAttack"
+        app:layout_constraintEnd_toEndOf="@+id/pbDefense"
+        app:layout_constraintStart_toStartOf="@+id/pbDefense"
+        app:layout_constraintTop_toTopOf="@+id/tvTextAttack" />
+
+    <ProgressBar
+        android:id="@+id/pbHP"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="150"
+        android:min="0"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTextHP"
+        app:layout_constraintEnd_toEndOf="@+id/pbAttack"
+        app:layout_constraintStart_toStartOf="@+id/pbAttack"
+        app:layout_constraintTop_toTopOf="@+id/tvTextHP" />
+
+    <ProgressBar
+        android:id="@+id/pbDefense"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="150"
+        android:min="0"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTextDefense"
+        app:layout_constraintEnd_toEndOf="@+id/pbSpAttack"
+        app:layout_constraintStart_toStartOf="@+id/pbSpAttack"
+        app:layout_constraintTop_toTopOf="@+id/tvTextDefense" />
+
+    <ProgressBar
+        android:id="@+id/pbSpAttack"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="150"
+        android:min="0"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTextSpAttack"
+        app:layout_constraintEnd_toEndOf="@+id/pbSpDefense"
+        app:layout_constraintStart_toStartOf="@+id/pbSpDefense"
+        app:layout_constraintTop_toTopOf="@+id/tvTextSpAttack" />
+
+    <ProgressBar
+        android:id="@+id/pbSpDefense"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="150"
+        android:min="0"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTextSpDef"
+        app:layout_constraintEnd_toEndOf="@+id/pbSpeed"
+        app:layout_constraintStart_toStartOf="@+id/pbSpeed"
+        app:layout_constraintTop_toTopOf="@+id/tvTextSpDef" />
+
+    <ProgressBar
+        android:id="@+id/pbSpeed"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="2dp"
+        android:max="150"
+        android:min="0"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTextSpeed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvTextSpeed"
+        app:layout_constraintTop_toTopOf="@+id/tvTextSpeed" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

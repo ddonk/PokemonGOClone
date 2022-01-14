@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.FragmentInfoAbout">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/tvTitleHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/readexprobold"
+        android:paddingHorizontal="10dp"
+        android:text="Height"
+        android:textColor="#8F9195"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_conversion_absoluteHeight="27dp"
+        tools:layout_conversion_absoluteWidth="53dp" />
+
+    <TextView
+        android:id="@+id/tvTitleWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/readexprobold"
+        android:paddingHorizontal="10dp"
+        android:text="Weight"
+        android:textColor="#8F9195"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTitleHeight"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleHeight"
+        tools:layout_conversion_absoluteHeight="27dp"
+        tools:layout_conversion_absoluteWidth="57dp" />
+
+    <TextView
+        android:id="@+id/tvTitleAbilities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/readexprobold"
+        android:text="Abilities"
+        android:textColor="#8F9195"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTitleWeight"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleWeight"
+        tools:layout_conversion_absoluteHeight="27dp"
+        tools:layout_conversion_absoluteWidth="65dp" />
+
+    <TextView
+        android:id="@+id/tvTextAbilities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:fontFamily="@font/readexprobold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/tvTitleAbilities"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleAbilities"
+        tools:layout_conversion_absoluteHeight="27dp"
+        tools:layout_conversion_absoluteWidth="65dp" />
+
+    <TextView
+        android:id="@+id/tvTextWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/readexprobold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTextAbilities"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleWeight"
+        tools:layout_conversion_absoluteHeight="27dp"
+        tools:layout_conversion_absoluteWidth="65dp" />
+
+    <TextView
+        android:id="@+id/tvTextHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/readexprobold"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/tvTextWeight"
+        app:layout_constraintTop_toTopOf="@+id/tvTitleHeight"
+        tools:layout_conversion_absoluteHeight="27dp"
+        tools:layout_conversion_absoluteWidth="65dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
