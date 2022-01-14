@@ -25,10 +25,6 @@ import java.util.Collections;
  * create an instance of this fragment.
  */
 public class FragmentCollection extends Fragment {
-
-    Pokemon[] pokemons = {new Pokemon("Treecko", Collections.singletonList(Type.Grass), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png"),
-            new Pokemon("Pikachu", Collections.singletonList(Type.Electric), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"),
-            new Pokemon("Squirtle", Collections.singletonList(Type.Water), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png")};
     private FragmentCollectionBinding binding;
 
     public FragmentCollection() {

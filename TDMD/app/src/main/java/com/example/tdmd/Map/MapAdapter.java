@@ -109,6 +109,7 @@ public class MapAdapter {
 
         this.geofencingClient = LocationServices.getGeofencingClient(this.activity);
         this.geofenceAdapter = new GeofenceAdapter(this.activity);
+        this.geofenceAdapter.setFragmentMapBinding(binding);
 
         binding.mvButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +119,7 @@ public class MapAdapter {
                 RESTAPIAdapter.GetPokemon(activity, new VolleyCallback() {
                     @Override
                     public void OnSucces(Pokemon result) {
-                        GeoPoint geoPoint = GetRandomLocation(yourLocation, 30);
+                        GeoPoint geoPoint = new GeoPoint(        51.5701, 4.7737);
                         AddGeofence(geoPoint, result, 30);
                     }
                 });
@@ -163,7 +164,7 @@ public class MapAdapter {
     public Geofence AddGeofence(GeoPoint geoPoint, Pokemon pokemon, float radius) {
         Geofence geofence = geofenceAdapter.getGeofence(pokemon.getName(), geoPoint, radius, Geofence.GEOFENCE_TRANSITION_ENTER | Geofence.GEOFENCE_TRANSITION_DWELL | Geofence.GEOFENCE_TRANSITION_EXIT);
         GeofencingRequest geofencingRequest = geofenceAdapter.getGeofencingRequest(geofence);
-        PendingIntent pendingIntent = geofenceAdapter.getPendingIntent();
+        PendingIntent pendingIntent = geofenceAdapter.getPendingIntent(pokemon);
 
         geofencingClient.addGeofences(geofencingRequest, pendingIntent)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

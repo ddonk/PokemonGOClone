@@ -77,8 +77,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return pokemons.length;
     }
 
-
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameText;

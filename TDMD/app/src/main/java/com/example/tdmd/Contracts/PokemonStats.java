@@ -1,6 +1,8 @@
 package com.example.tdmd.Contracts;
 
-public class PokemonStats {
+import java.io.Serializable;
+
+public class PokemonStats implements Serializable {
     private int hp;
     private int attack;
     private int defense;
