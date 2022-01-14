@@ -60,8 +60,8 @@ public class FragmentInfo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPokemonInfoBinding.inflate(inflater, container, false);
         Log.d("TESTING", "CREATING TABS");
-        FragmentHandler.TabsFragmentsInit(new PokemonInfoPagerAdapter(getFragmentManager(), 3, pokemon),binding.tlInfo, binding.vpInfo, getFragmentManager());
-        FragmentHandler.ReplaceFragment(getFragmentManager(), new FragmentInfoAbout(), R.id.vpInfo);
+        FragmentHandler.TabsFragmentsInit(new PokemonInfoPagerAdapter(getChildFragmentManager(), 3, pokemon),binding.tlInfo, binding.vpInfo, getChildFragmentManager());
+        FragmentHandler.ReplaceFragment(getChildFragmentManager(), new FragmentInfoAbout(), R.id.vpInfo);
         //TODO load pokemon info correctly
 
         if(pokemon != null) {
@@ -71,7 +71,7 @@ public class FragmentInfo extends Fragment {
         //TODO check why this button needs to be pressed twice
         ImageView backButton = binding.ivBackArrow;
         backButton.setOnClickListener(v -> {
-            if(getFragmentManager().getBackStackEntryCount() >= 0) {
+            if(getFragmentManager().getBackStackEntryCount() > 0) {
                 getFragmentManager().popBackStackImmediate();
             }
             else {

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tdmd.Contracts.Pokemon;
+import com.example.tdmd.Contracts.PokemonStats;
 import com.example.tdmd.Contracts.Type;
 import com.example.tdmd.Adapters.RecyclerAdapter;
 import com.example.tdmd.databinding.FragmentCollectionBinding;
