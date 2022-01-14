@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.tdmd.AskPermission;
 import com.example.tdmd.Contracts.Pokemon;
 import com.example.tdmd.Contracts.Type;
 import com.google.android.gms.location.Geofence;
@@ -49,6 +50,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class MapAdapter {
     private MapView mapView;
@@ -59,11 +61,20 @@ public class MapAdapter {
     private GeofencingClient geofencingClient;
     private GeofenceAdapter geofenceAdapter;
 
-    @SuppressLint("MissingPermission")
     public MapAdapter(MapView mapView, Activity activity) {
-        this.activity = activity;
-        AskPermission();
+        MapInit(mapView, activity);
 
+        AskPermission.AskPermission(activity, new Callable() {
+            @Override
+            public Object call() throws Exception {
+                LocationInit();
+                return null;
+            }
+        });
+    }
+
+    private void MapInit(MapView mapView, Activity activity) {
+        this.activity = activity;
         this.mapView = mapView;
         this.myLocationListener = new MyLocationListener();
 
@@ -73,9 +84,12 @@ public class MapAdapter {
 
         IMapController mapController = mapView.getController();
         mapController.setZoom(20);
+    }
 
+    @SuppressLint("MissingPermission")
+    private void LocationInit() {
         locationManager = (LocationManager) this.activity.getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0,myLocationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, myLocationListener);
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if(location != null ) {
             yourLocation = new GeoPoint(location.getLatitude(), location.getLongitude());
@@ -89,13 +103,6 @@ public class MapAdapter {
         Pokemon pokemon = new Pokemon("Treecko", Collections.singletonList(Type.Grass), "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/252.png");
 
         AddGeofence(new GeoPoint(51.5924, 4.7813), pokemon, 100);
-
-        if(checkIfPermissionGranted()) {
-
-        } else {
-            Toast.makeText(activity, "Doesnt have permissions", Toast.LENGTH_LONG);
-            AskPermission();
-        }
     }
 
     private void displayMyCurrentLocationOverlay() {
@@ -160,34 +167,6 @@ public class MapAdapter {
         circle.setPoints(circlePoints);
         mapView.getOverlayManager().add(circle);
         mapView.invalidate();
-    }
-
-    private static final String[] PERMISSION_ARRAY = new String[]{
-            Manifest.permission.ACCESS_COARSE_LOCATION,
-            Manifest.permission.ACCESS_FINE_LOCATION,
-            Manifest.permission.ACCESS_BACKGROUND_LOCATION
-    };
-
-    public boolean checkIfPermissionGranted() {
-        for (String permission : PERMISSION_ARRAY) {
-            if (!(ContextCompat.checkSelfPermission(activity, permission) == PackageManager.PERMISSION_GRANTED)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static final int REQUESTCODE = 1;
-
-    public void AskPermission() {
-        if (checkIfPermissionGranted()) {
-            //TODO Add method when permission is granted
-            Toast toast = Toast.makeText(activity, "Permissions were granted", Toast.LENGTH_LONG);
-            toast.show();
-        } else {
-            ActivityCompat.requestPermissions(activity, PERMISSION_ARRAY, REQUESTCODE);
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, REQUESTCODE);
-        }
     }
 }
 

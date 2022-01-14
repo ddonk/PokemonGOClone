@@ -1,8 +1,11 @@
 package com.example.tdmd;
 
+import android.Manifest;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.tdmd.Adapters.MainPagerAdapter;
