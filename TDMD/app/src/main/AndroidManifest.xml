@@ -20,7 +20,7 @@
         android:theme="@style/Theme.TDMD"
         android:usesCleartextTraffic="true" >
         <receiver
-            android:name=".Map.GeofenceAdapter$GeofencingBroadcastReceiver"
+            android:name=".Map.MapAdapter$GeofencingBroadcastReceiver"
             android:enabled="true"
             android:exported="true">
         </receiver>

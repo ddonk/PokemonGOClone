@@ -84,7 +84,6 @@ public class FragmentCollection extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("Fragments", "Testing");
         SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(binding.getRoot().getContext());
         binding.rvCollection.setAdapter(new RecyclerAdapter(sharedPreferencesManager.GetPokemon()));
     }

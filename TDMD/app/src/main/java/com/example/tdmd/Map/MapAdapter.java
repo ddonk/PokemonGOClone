@@ -4,15 +4,20 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -31,6 +36,7 @@ import com.example.tdmd.Contracts.Pokemon;
 import com.example.tdmd.Contracts.Type;
 import com.example.tdmd.Fragments.FragmentMap;
 import com.example.tdmd.R;
+import com.example.tdmd.SharedPreferencesManager;
 import com.example.tdmd.VolleyCallback;
 import com.example.tdmd.databinding.FragmentMapBinding;
 import com.google.android.gms.location.Geofence;
@@ -47,6 +53,7 @@ import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Marker;
+import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
 import org.osmdroid.views.overlay.Polygon;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
@@ -68,7 +75,7 @@ public class MapAdapter {
     private GeoPoint yourLocation;
     private GeofencingClient geofencingClient;
     private GeofenceAdapter geofenceAdapter;
-    private FragmentMapBinding binding;
+    private static FragmentMapBinding binding;
 
     public MapAdapter(Activity activity, FragmentMapBinding binding) {
         this.binding = binding;
@@ -101,7 +108,7 @@ public class MapAdapter {
         locationManager = (LocationManager) this.activity.getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, myLocationListener);
         Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        if(location != null ) {
+        if (location != null) {
             yourLocation = new GeoPoint(location.getLatitude(), location.getLongitude());
         }
 
@@ -119,7 +126,7 @@ public class MapAdapter {
                 RESTAPIAdapter.GetPokemon(activity, new VolleyCallback() {
                     @Override
                     public void OnSucces(Pokemon result) {
-                        GeoPoint geoPoint = new GeoPoint(        51.5701, 4.7737);
+                        GeoPoint geoPoint = GetRandomLocation(yourLocation, 4);
                         AddGeofence(geoPoint, result, 30);
                     }
                 });
@@ -137,27 +144,32 @@ public class MapAdapter {
         mapView.getController().setCenter(yourLocation);
     }
 
-    public void AddPokemonMarkerToMap(GeoPoint geoPoint, Pokemon pokemon) {
-        OverlayItem overlayItem = new OverlayItem(pokemon.getName(), "Sample Description", geoPoint);
+    public Marker AddPokemonMarkerToMap(GeoPoint geoPoint, Pokemon pokemon) {
+        Marker marker = new Marker(this.mapView);
+        marker.setId(pokemon.getName());
+        marker.setPosition(geoPoint);
+        marker.setIcon(new BitmapDrawable(GetBitmapFromUrl(pokemon)));
 
-        new GetImageFromUrl(overlayItem).execute(pokemon.getImageurl());
+        mapView.getOverlayManager().add(marker);
 
-        ArrayList items = new ArrayList<OverlayItem>();
-        items.add(overlayItem);
+        return marker;
+    }
 
-        ItemizedIconOverlay mLocationOverlay = new ItemizedIconOverlay<OverlayItem>(activity, items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
-            @Override
-            public boolean onItemSingleTapUp(int index, OverlayItem item) {
-                return false;
-            }
+    public Bitmap GetBitmapFromUrl(Pokemon pokemon) {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy gfgPolicy =
+                    new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(gfgPolicy);
+        }
 
-            @Override
-            public boolean onItemLongPress(int index, OverlayItem item) {
-                return false;
-            }
-        });
+        InputStream inputStream = null;
+        try {
+            inputStream = new URL(pokemon.getImageurl()).openStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        this.mapView.getOverlays().add(mLocationOverlay);
+        return Bitmap.createScaledBitmap(BitmapFactory.decodeStream(inputStream), 200, 200, false);
     }
 
     @SuppressLint("MissingPermission")
@@ -171,8 +183,9 @@ public class MapAdapter {
                     @Override
                     public void onSuccess(@NonNull Void unused) {
                         Log.d("Geofencing", "Succes Add");
+
+                        //DrawCircle(geoPoint, radius);
                         AddPokemonMarkerToMap(geoPoint, pokemon);
-                        DrawCircle(geoPoint, radius);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -186,12 +199,13 @@ public class MapAdapter {
         return geofence;
     }
 
-    public void DrawCircle(GeoPoint center, double radiusInMeters) {
+    public Polygon DrawCircle(GeoPoint center, double radiusInMeters) {
         List<GeoPoint> circlePoints = Polygon.pointsAsCircle(center, radiusInMeters);
         Polygon circle = new Polygon(mapView);
         circle.setPoints(circlePoints);
         mapView.getOverlayManager().add(circle);
         mapView.invalidate();
+        return circle;
     }
 
     private GeoPoint GetRandomLocation(GeoPoint currentLocation, int bounds) {
@@ -207,29 +221,35 @@ public class MapAdapter {
     private float getRandomNumber(int min, int max) {
         return (float) ((Math.random() * (max - min)) + min);
     }
-}
 
-class GetImageFromUrl extends AsyncTask<String, Void, Bitmap>{
-    OverlayItem overlayItem;
-    public GetImageFromUrl(OverlayItem img){
-        this.overlayItem = img;
-    }
-    @Override
-    protected Bitmap doInBackground(String... url) {
-        String stringUrl = url[0];
-        Bitmap bitmap = null;
-        InputStream inputStream;
-        try {
-            inputStream = new java.net.URL(stringUrl).openStream();
-            bitmap = BitmapFactory.decodeStream(inputStream);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static class GeofencingBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("Geofencing", "Triggering");
+            Toast.makeText(context, "Geofencing triggered...", Toast.LENGTH_LONG).show();
+            Bundle bundle = intent.getBundleExtra("Bundle");
+            Pokemon pokemon = (Pokemon) bundle.getSerializable("Pokemon");
+            Log.d("Geofencing", pokemon.toString());
+            binding.mvButton2.setVisibility(View.VISIBLE);
+            binding.mvButton2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("Geofencing", "Testing button");
+                    SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(binding.getRoot().getContext());
+                    ArrayList<Pokemon> pokemons = sharedPreferencesManager.GetPokemon();
+                    pokemons.add(pokemon);
+                    sharedPreferencesManager.AddPokemon(pokemons);
+                    Log.d("Geofencing", sharedPreferencesManager.GetPokemon().toString());
+                    binding.mvButton2.setVisibility(View.INVISIBLE);
+
+                    for (int i = 0; i < binding.mapview.getOverlays().size(); i++) {
+                        Overlay overlay = binding.mapview.getOverlays().get(i);
+                        if (overlay instanceof Marker && ((Marker) overlay).getId().equals(pokemon.getName())) {
+                            binding.mapview.getOverlays().remove(overlay);
+                        }
+                    }
+                }
+            });
         }
-        return bitmap;
-    }
-    @Override
-    protected void onPostExecute(Bitmap bitmap){
-        super.onPostExecute(bitmap);
-        overlayItem.setMarker(new BitmapDrawable(bitmap));
     }
 }

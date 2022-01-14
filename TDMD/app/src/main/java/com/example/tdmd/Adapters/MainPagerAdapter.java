@@ -33,7 +33,6 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return FragmentMap.newInstance();
             case 1:
-                Log.d("Fragments", "Testing");
                 return FragmentCollection.newInstance();
             case 2:
                 return FragmentSettings.newInstance();

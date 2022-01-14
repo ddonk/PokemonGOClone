@@ -18,6 +18,8 @@ import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
 
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.overlay.ItemizedIconOverlay;
+import org.osmdroid.views.overlay.Polygon;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -66,38 +68,14 @@ public class GeofenceAdapter extends ContextWrapper {
             return pendingIntent;
         }
 
-        Intent intent = new Intent(this, GeofencingBroadcastReceiver.class);
+        Intent intent = new Intent(this, MapAdapter.GeofencingBroadcastReceiver.class);
         Bundle bundle = new Bundle();
 
         bundle.putSerializable("Pokemon", pokemon);
+
         intent.putExtra("Bundle", bundle);
         pendingIntent =  PendingIntent.getBroadcast(this, 2607, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         return pendingIntent;
-    }
-
-    public static class GeofencingBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.d("Geofencing", "Triggering");
-            Toast.makeText(context, "Geofencing triggered...", Toast.LENGTH_LONG).show();
-            Bundle bundle = intent.getBundleExtra("Bundle");
-            Pokemon pokemon = (Pokemon) bundle.getSerializable("Pokemon");
-            Log.d("Geofencing", pokemon.toString());
-
-            fragmentMapBinding.mvButton2.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.d("Geofencing", "Testing button");
-
-                    SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(fragmentMapBinding.getRoot().getContext());
-                    ArrayList<Pokemon> pokemons = sharedPreferencesManager.GetPokemon();
-                    pokemons.add(pokemon);
-                    sharedPreferencesManager.AddPokemon(pokemons);
-                    Log.d("Geofencing", sharedPreferencesManager.GetPokemon().toString());
-
-                }
-            });
-        }
     }
 }

@@ -59,7 +59,6 @@ public class FragmentInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPokemonInfoBinding.inflate(inflater, container, false);
-        Log.d("TESTING", "CREATING TABS");
         FragmentHandler.TabsFragmentsInit(new PokemonInfoPagerAdapter(getChildFragmentManager(), 3, pokemon),binding.tlInfo, binding.vpInfo, getChildFragmentManager());
         FragmentHandler.ReplaceFragment(getChildFragmentManager(), new FragmentInfoAbout(), R.id.vpInfo);
         //TODO load pokemon info correctly
