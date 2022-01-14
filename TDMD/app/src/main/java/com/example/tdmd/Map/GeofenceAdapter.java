@@ -1,31 +1,19 @@
 package com.example.tdmd.Map;
 
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.tdmd.Contracts.Pokemon;
-import com.example.tdmd.Contracts.Type;
-import com.example.tdmd.SharedPreferencesManager;
 import com.example.tdmd.databinding.FragmentMapBinding;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
 
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.overlay.ItemizedIconOverlay;
-import org.osmdroid.views.overlay.Polygon;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 public class GeofenceAdapter extends ContextWrapper {
     private PendingIntent pendingIntent;

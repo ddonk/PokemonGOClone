@@ -1,14 +1,5 @@
 package com.example.tdmd.Contracts;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import androidx.core.content.ContextCompat;
-
-import com.example.tdmd.R;
-
 import java.io.Serializable;
 import java.util.List;
 

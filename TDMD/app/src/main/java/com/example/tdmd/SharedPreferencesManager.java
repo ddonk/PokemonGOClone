@@ -1,7 +1,6 @@
 package com.example.tdmd;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import com.example.tdmd.Contracts.Pokemon;
 

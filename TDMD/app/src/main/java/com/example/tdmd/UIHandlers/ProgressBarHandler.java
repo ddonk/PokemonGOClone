@@ -1,13 +1,7 @@
 package com.example.tdmd.UIHandlers;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.widget.ProgressBar;
-
-import androidx.core.content.ContextCompat;
-
-import com.example.tdmd.R;
 
 public class ProgressBarHandler {
     private final double REDCOLORMAXPERC = 0.33;

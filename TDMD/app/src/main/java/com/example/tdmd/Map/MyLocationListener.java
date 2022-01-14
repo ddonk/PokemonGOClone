@@ -5,9 +5,6 @@ import android.location.LocationListener;
 import android.os.Bundle;
 
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
-import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
-import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
 public class MyLocationListener implements LocationListener {
     private GeoPoint geoPoint;

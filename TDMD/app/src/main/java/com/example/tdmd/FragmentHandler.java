@@ -1,18 +1,11 @@
 package com.example.tdmd;
 
-import android.app.Activity;
-import android.view.View;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.tdmd.Adapters.MainPagerAdapter;
-import com.example.tdmd.Adapters.PokemonInfoPagerAdapter;
-import com.example.tdmd.Fragments.FragmentInfo;
 import com.google.android.material.tabs.TabLayout;
 
 public class FragmentHandler extends androidx.fragment.app.FragmentManager {
