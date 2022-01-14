@@ -28,8 +28,8 @@ public class FragmentInfoStats extends Fragment {
     public static FragmentInfoStats newInstance(Pokemon pokemon) {
         FragmentInfoStats fragment = new FragmentInfoStats();
         Bundle args = new Bundle();
-        fragment.setArguments(args);
         args.putSerializable(ARG_Pokemon, pokemon);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -49,6 +49,7 @@ public class FragmentInfoStats extends Fragment {
 
         if(mPokemon != null) {
             LoadStats();
+
         }
 
         return binding.getRoot();

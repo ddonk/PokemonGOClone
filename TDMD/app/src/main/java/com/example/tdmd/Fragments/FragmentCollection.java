@@ -20,6 +20,8 @@ import com.example.tdmd.Adapters.RecyclerAdapter;
 import com.example.tdmd.SharedPreferencesManager;
 import com.example.tdmd.databinding.FragmentCollectionBinding;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 /**
