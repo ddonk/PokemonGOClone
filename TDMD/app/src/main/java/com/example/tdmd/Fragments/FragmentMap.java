@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.tdmd.Map.MapAdapter;
 import com.example.tdmd.Contracts.Pokemon;
@@ -19,6 +20,8 @@ import java.util.Collections;
 
 public class FragmentMap extends Fragment {
     private FragmentMapBinding binding;
+    private Button button;
+
     public FragmentMap() {
         // Required empty public constructor
     }
@@ -43,7 +46,8 @@ public class FragmentMap extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentMapBinding.inflate(inflater, container, false);
-
+        this.button = binding.mvButton;
+        button.setVisibility(View.VISIBLE);
         MapAdapter mapAdapter = new MapAdapter(binding.mapview, getActivity());
 //        mapAdapter.InitMap();
 //
