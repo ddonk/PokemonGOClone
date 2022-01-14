@@ -3,13 +3,23 @@ package com.example.tdmd.Fragments;
 
 import static com.example.tdmd.UIHandlers.TypeColorHandler.typeColor;
 
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.tdmd.Adapters.PokemonInfoPagerAdapter;
 import com.example.tdmd.Contracts.Pokemon;
@@ -52,12 +62,22 @@ public class FragmentInfo extends Fragment {
         Log.d("TESTING", "CREATING TABS");
         FragmentHandler.TabsFragmentsInit(new PokemonInfoPagerAdapter(getFragmentManager(), 3, pokemon),binding.tlInfo, binding.vpInfo, getFragmentManager());
         FragmentHandler.ReplaceFragment(getFragmentManager(), new FragmentInfoAbout(), R.id.vpInfo);
-       //TODO Fix fragment replace bug
         //TODO load pokemon info correctly
 
         if(pokemon != null) {
             LoadPokemoninUI();
         }
+
+        //TODO check why this button needs to be pressed twice
+        ImageView backButton = binding.ivBackArrow;
+        backButton.setOnClickListener(v -> {
+            if(getFragmentManager().getBackStackEntryCount() >= 0) {
+                getFragmentManager().popBackStackImmediate();
+            }
+            else {
+                Toast.makeText(getContext(),"There is no previous fragment",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return binding.getRoot();
     }

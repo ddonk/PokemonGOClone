@@ -3,6 +3,8 @@ package com.example.tdmd.Adapters;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -25,7 +27,7 @@ import java.util.Random;
 public class RESTAPIAdapter {
     private Context context;
     private RequestQueue queue;
-    private Pokemon pokemon;
+    private Integer rndInt;
 
     public RESTAPIAdapter(Context context) {
         this.context = context;
@@ -33,60 +35,41 @@ public class RESTAPIAdapter {
     }
 
     public void GetPokemon() {
-        String url = "https://pokeapi.co/api/v2/pokemon/charmander";
+        rndInt = (int) Math.floor(Math.random() * 898) + 1;
+        String url = "https://pokeapi.co/api/v2/pokemon/";
+        url = url + rndInt;
+
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
 
                     @Override
                     public void onResponse(JSONObject response) {
+
                         try {
-                            JSONObject species = response.getJSONObject("species");
-                            String name = species.getString("name");
+                            //Log.d("Volley", response.toString());
+                            String name = response.getString("name");
 
-                            JSONArray JSONtypes = response.getJSONArray("types");
-                            ArrayList<Type> types = convertJSONArrayToTypeArray(JSONtypes);
-
+                            name = name.substring(0, 1).toUpperCase() + name.substring(1);
                             int id = response.getInt("id");
-                            double height = response.getDouble("height");
-                            double weight = response.getDouble("weight");;
-                            ArrayList<String> abilities = convertJSONArrayToStringArray(response.getJSONArray("abilities"));
+                            int height = response.getInt("height");
+                            int weight = response.getInt("weight");
+                            //Log.d("Volley", "name: " + name + " id: " + id + " height: " + height + " weight: " + weight);
 
-                            JSONArray stats = response.getJSONArray("stats");
+                            String imageurl = getArt(response);
+                            ArrayList<Type> types = getTypes(response);
+                            ArrayList<String> abilities = getAbilities(response);
+                            ArrayList<String> moves = getMoves(response);
 
-                            PokemonStats pokemonStats = new PokemonStats(stats.getJSONObject(0).getInt("base_stat"),
-                                    stats.getJSONObject(0).getInt("base_stat"),
-                                    stats.getJSONObject(1).getInt("base_stat"),
-                                    stats.getJSONObject(2).getInt("base_stat"),
-                                    stats.getJSONObject(3).getInt("base_stat"),
-                                    stats.getJSONObject(4).getInt("base_stat"));
+                            PokemonStats pokemonStats = getPokemonStats(response);
+                            Pokemon pokemon = new Pokemon(name, types, id, height, weight, abilities, pokemonStats, moves, imageurl);
 
-                            ArrayList<Pokemon> evolutions = new ArrayList<>();
-
-                            JSONArray JSONMoves = response.getJSONArray("moves");
-
-                            ArrayList<String> moves = new ArrayList<>();
-                            for (int i = 0; i < 4; i++) {
-                                Random random = new Random();
-
-                                int high = JSONMoves.length() -1;
-                                int low = 0;
-
-                                int randomMoveIndex = random.nextInt(random.nextInt(high-low) + low);
-
-                                JSONObject move = JSONMoves.getJSONObject(randomMoveIndex);
-                                moves.add(move.getString("name"));
-                            }
-
-                            JSONObject JSONSprites = response.getJSONObject("sprites");
-                            JSONObject JSONOtherSprites = JSONSprites.getJSONObject("other");
-                            JSONObject officialArtwork = JSONOtherSprites.getJSONObject("official-artwork");
-                            String imageurl = officialArtwork.getString("front_default");
-
-                            pokemon = new Pokemon(name, types, id, height, weight, abilities, pokemonStats, evolutions, moves, imageurl);
+                            Log.d("Volley", pokemon.toString());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+
                     }
                 }, new Response.ErrorListener() {
 
@@ -99,31 +82,105 @@ public class RESTAPIAdapter {
         queue.add(jsonObjectRequest);
     }
 
-    private ArrayList<Type> convertJSONArrayToTypeArray(JSONArray jsonArray) {
-        ArrayList<Type> types = new ArrayList<>();
+    private PokemonStats getPokemonStats(JSONObject response) {
+        try {
+            JSONArray stats = response.getJSONArray("stats");
 
-        for (int i = 0; i < jsonArray.length(); i++) {
-            try {
-                types.add(Type.valueOf(jsonArray.getString(i)));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            int hp;
+            int attack;
+            int defense;
+            int spAttack;
+            int spDefense;
+            int speed;
+
+            hp = stats.getJSONObject(0).getInt("base_stat");
+            attack = stats.getJSONObject(1).getInt("base_stat");
+            defense = stats.getJSONObject(2).getInt("base_stat");
+            spAttack = stats.getJSONObject(3).getInt("base_stat");
+            spDefense = stats.getJSONObject(4).getInt("base_stat");
+            speed = stats.getJSONObject(5).getInt("base_stat");
+
+            PokemonStats pokemonStats = new PokemonStats(hp, attack, defense, spAttack, spDefense, speed);
+
+            return pokemonStats;
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
-        return types;
+        return null;
     }
 
-    private ArrayList<String> convertJSONArrayToStringArray(JSONArray jsonArray) {
-        ArrayList<String> strings = new ArrayList<String>();
-        for (int i = 0; i < jsonArray.length(); i++) {
-            try {
-                strings.add(jsonArray.getString(i));
-            } catch (JSONException e) {
-                e.printStackTrace();
+    private ArrayList<String> getMoves(JSONObject response) {
+        ArrayList<String> result = new ArrayList<>();
+
+        try {
+            JSONArray movesArray = response.getJSONArray("moves");
+            for (int i = 0; i < 4; i++) {
+                JSONObject move = movesArray.getJSONObject(i);
+                JSONObject move1 = move.getJSONObject("move");
+                String name = move1.getString("name");
+
+                result.add(name);
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
-        return strings;
+        return result;
+    }
+
+    private String getArt(JSONObject response) {
+        try {
+            JSONObject spritesArray = response.getJSONObject("sprites");
+
+            JSONObject otherSprites = spritesArray.getJSONObject("other");
+
+            JSONObject officialArtwork = otherSprites.getJSONObject("official-artwork");
+
+            String imageUrl = officialArtwork.getString("front_default");
+            //Log.d("Volley", "imageurl: " + imageUrl.toString());
+
+            return imageUrl;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private ArrayList<Type> getTypes(JSONObject response) {
+        ArrayList<Type> result = new ArrayList<>();
+        try {
+            JSONArray types = response.getJSONArray("types");
+            for (int i = 0; i < types.length(); i++) {
+                String type = types.getJSONObject(i).getJSONObject("type").getString("name");
+
+                String output = type.substring(0, 1).toUpperCase() + type.substring(1);
+
+                result.add(Type.valueOf(output));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    private ArrayList<String> getAbilities(JSONObject response) {
+        ArrayList<String> result = new ArrayList<>();
+        try {
+            JSONArray jsonArray = response.getJSONArray("abilities");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject ability = jsonArray.getJSONObject(i);
+                JSONObject ability1 = ability.getJSONObject("ability");
+                String abilityName = ability1.getString("name");
+                result.add(abilityName);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }
 
