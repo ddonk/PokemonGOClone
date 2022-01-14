@@ -14,9 +14,9 @@ public class ProgressBarHandler {
     private final double YELLOWCOLORMAXPERC = 0.67;
     private final double GREENCOLORMAXPERC = 1;
 
-    private final int PBRED = Color.parseColor("#FF0000");;
-    private final int PBYELLOW = Color.parseColor("#FFFF00");
-    private final int PBGREEN = Color.parseColor("#00CA03");
+    private final int PBRED = Color.parseColor("#C32121");
+    private final int PBYELLOW = Color.parseColor("#FFC107");
+    private final int PBGREEN = Color.parseColor("#12B815");
 
 
     public void SetProgressbarValue(int value, ProgressBar progressBar) {

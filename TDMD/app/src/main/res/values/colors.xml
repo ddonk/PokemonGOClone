@@ -8,9 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="PBRED">#FF0000</color>
-    <color name="PBYELLOW">#FFFF00</color>
-    <color name="PBGREEN">#00CA03</color>
+    <color name="PBRED">#C32121</color>
+    <color name="PBYELLOW">#FFC107</color>
+    <color name="PBGREEN">#12B815</color>
 
 
     <color name="PokemonNormalType">#A3A37B</color>

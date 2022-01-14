@@ -41,14 +41,12 @@ public class RESTAPIAdapter {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            //Log.d("Volley", response.toString());
                             String name = response.getString("name");
 
                             name = name.substring(0, 1).toUpperCase() + name.substring(1);
                             int id = response.getInt("id");
                             int height = response.getInt("height");
                             int weight = response.getInt("weight");
-                            //Log.d("Volley", "name: " + name + " id: " + id + " height: " + height + " weight: " + weight);
 
                             String imageurl = getArt(response);
                             ArrayList<Type> types = getTypes(response);
@@ -114,7 +112,9 @@ public class RESTAPIAdapter {
                 JSONObject move1 = move.getJSONObject("move");
                 String name = move1.getString("name");
 
-                result.add(name);
+                String output = name.substring(0, 1).toUpperCase() + name.substring(1);
+
+                result.add(output);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -168,7 +168,10 @@ public class RESTAPIAdapter {
                 JSONObject ability = jsonArray.getJSONObject(i);
                 JSONObject ability1 = ability.getJSONObject("ability");
                 String abilityName = ability1.getString("name");
-                result.add(abilityName);
+
+                String output = abilityName.substring(0, 1).toUpperCase() + abilityName.substring(1);
+
+                result.add(output);
             }
         } catch (JSONException e) {
             e.printStackTrace();
